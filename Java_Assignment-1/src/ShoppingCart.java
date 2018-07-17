@@ -17,6 +17,7 @@ class Product{
 	HashMap<Integer,Product> productList=new HashMap<Integer,Product>();
 	List<Product> cartItems=new LinkedList<Product>();
 	List<Integer> productQuantity=new ArrayList<Integer>();
+	
 	public void setProducts(){
 		
 		productList.put(1,new Product(1,"item1",10));
@@ -41,12 +42,8 @@ class Product{
 			System.out.println("Do you want to add more items ?(y/n)");
 			choice=sc.next().charAt(0);
 		}
-		System.out.println("Items in cart:");
-		int index=0;
-		for(Product items:cartItems){
-			System.out.println(items.productName+"\t"+productQuantity.get(index++)+"\t"+items.productPrice);
-		}
 		
+		showCartItems();
 		System.out.println("Enter your choice\n1. remove any item  2.update quantity  3. proceed to bill");
 		int furtherChoice=sc.nextInt();
 		switch(furtherChoice){
@@ -73,13 +70,8 @@ class Product{
 			System.out.println("Do you want to remove more items ?(y/n)");
 			choice=sc.next().charAt(0);
 			}
-			System.out.println("Items in cart:");
-			int index=0;
-			for(Product items:cartItems){
-				
-				System.out.println(items.productName+"\t"+productQuantity.get(index++)+"\t"+items.productPrice);
-		}
-			System.out.println("Enter your choice\n1. add any item  2.update quantity  3. proceed to bill");
+		showCartItems();
+		System.out.println("Enter your choice\n1. add any item  2.update quantity  3. proceed to bill");
 		int furtherChoice=sc.nextInt();
 		switch(furtherChoice){
 			case 1:
@@ -110,10 +102,10 @@ class Product{
 	public void updateProductQuantity(){
 		System.out.println("Enter the product no.: ");
 		int productNumber=sc.nextInt();
+		System.out.println("updated quantity: ");
 		int productQuantity=sc.nextInt();
-		this.productQuantity.add(productNumber, productQuantity);
-		System.out.println("Items in cart:");
-		
+		 this.productQuantity.add((productNumber-1), productQuantity);
+		showCartItems();
 		System.out.println("Enter your choice\n1. remove any item  2.update quantity  3. proceed to bill");
 		int furtherChoice=sc.nextInt();
 		switch(furtherChoice){
@@ -131,10 +123,17 @@ class Product{
 		}
 	}
 	
+	public void showCartItems(){
+		System.out.println("Items in cart:");
+		int index=0;
+		for(Product items:cartItems){
+			System.out.println(items.productName+"\t"+productQuantity.get(index++)+"\t"+items.productPrice);
+		}
+	}
+	
 	public void showProducts(){
 		System.out.println("PRODUCTS AVAILABLE\n");
 		for(Product items:productList.values()){
-			
 			System.out.println(items.productId+"\t\t"+items.productName+"\t\t"+items.productPrice);
 		}
 	}
@@ -146,6 +145,5 @@ public class ShoppingCart {
 		Product obj=new Product();
 		obj.showProducts();
 		obj.addToCart();
-		
 	}
 }

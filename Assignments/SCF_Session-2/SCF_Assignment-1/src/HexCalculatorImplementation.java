@@ -1,5 +1,7 @@
 import java.util.Scanner;
-
+/*
+ * class contains main() method
+ */
 public class HexCalculatorImplementation {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);

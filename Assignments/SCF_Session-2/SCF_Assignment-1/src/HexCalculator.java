@@ -7,44 +7,44 @@ public class HexCalculator implements HexCalcMethods {
     public String add(String firstNumber, String secondNumber) // adds two hex numbers and returns hexnumber 
     {
         int sum = 0;
-        int number1 = hexToDecimal(firstNumber);
-        int number2 = hexToDecimal(secondNumber);
+        int number1 = convertHexToDecimal(firstNumber);
+        int number2 = convertHexToDecimal(secondNumber);
         sum = number1 + number2;
 
-        return (decimalToHex(String.valueOf(sum)));
+        return (convertDecimalToHex(String.valueOf(sum)));
     }
 
     @Override
     public String subtract(String firstNumber, String secondNumber) // subtracts two hex numbers and returns hexnumber 
     {
         int difference = 0;
-        int number1 = hexToDecimal(firstNumber);
-        int number2 = hexToDecimal(secondNumber);
+        int number1 = convertHexToDecimal(firstNumber);
+        int number2 = convertHexToDecimal(secondNumber);
         difference = number1 - number2;
 
-        return (decimalToHex(String.valueOf(difference)));
+        return (convertDecimalToHex(String.valueOf(difference)));
     }
 
     @Override
     public String multiply(String firstNumber, String secondNumber) // multiply two hex numbers and returns hexnumber 
     {
         int product = 0;
-        int number1 = hexToDecimal(firstNumber);
-        int number2 = hexToDecimal(secondNumber);
+        int number1 = convertHexToDecimal(firstNumber);
+        int number2 = convertHexToDecimal(secondNumber);
         product = number1 * number2;
 
-        return (decimalToHex(String.valueOf(product)));
+        return (convertDecimalToHex(String.valueOf(product)));
     }
 
     @Override
     public String divide(String firstNumber, String secondNumber) // divide two hex numbers and returns hexnumber 
     {
         int divideResult = 0;
-        int number1 = hexToDecimal(firstNumber);
-        int number2 = hexToDecimal(secondNumber);
+        int number1 = convertHexToDecimal(firstNumber);
+        int number2 = convertHexToDecimal(secondNumber);
         divideResult = number1 / number2;
 
-        return (decimalToHex(String.valueOf(divideResult)));
+        return (convertDecimalToHex(String.valueOf(divideResult)));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class HexCalculator implements HexCalcMethods {
     }
 
     @Override
-    public int hexToDecimal(String number) //converts hex number to decimal
+    public int convertHexToDecimal(String number) //converts hex number to decimal
     {
         String digits = "0123456789ABCDEF";
         String hex = number;
@@ -100,7 +100,7 @@ public class HexCalculator implements HexCalcMethods {
     }
 
     @Override
-    public String decimalToHex(String number) //convert decimal to hex number 
+    public String convertDecimalToHex(String number) //convert decimal to hex number 
     {
         int remainder;
         String hex = "";

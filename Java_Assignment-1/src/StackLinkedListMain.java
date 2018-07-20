@@ -1,15 +1,15 @@
 import java.util.Scanner;
-/*
- * class containing main method
- */
-public class StackArrayImplementation {
+
+public class StackLinkedListMain {
+
     public static void main(String args[]) {
-        int numberOfElement = 0;
-        int choice = 0;
+
+        stackImplementation obj = new stackImplementation();
         Scanner sc = new Scanner(System.in);
-        StackArrayMethods obj = new StackArrayMethods();
-        while (choice != 5) {
-            System.out.println("enter your choice: 1.Push  2.Pop  3.top  4.isEmpty 5.exit");
+        int choice = 1;
+        int numberOfElement = 0;
+        while (choice != 4) {
+            System.out.println("enter your choice: 1.Push  2.Pop  3.top  4.exit");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -27,10 +27,8 @@ public class StackArrayImplementation {
                 case 3:
                     System.out.println(obj.Top());
                     break;
+
                 case 4:
-                    System.out.println(obj.isEmpty());
-                    break;
-                case 5:
                     break;
                 default:
                     System.out.println("incorrect choice !");

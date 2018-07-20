@@ -4,7 +4,7 @@ public class Grade {
 
     /*
      * finds average of the grades
-     * @param list of grades
+     * @param list of grades of students
      * @return average of grades obtained
      */
     public double findAverage(List < Integer > grades) {

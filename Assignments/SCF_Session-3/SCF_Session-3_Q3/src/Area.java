@@ -5,7 +5,7 @@ public class Area {
 	 *finds the area of triangle
 	 *@param width of base
 	 *@param height of triangle
-	 *@return area computed
+	 *@return area calculated
 	 */
 	public double triangleArea(double width, double height)
 	{

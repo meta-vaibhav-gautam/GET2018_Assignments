@@ -24,5 +24,23 @@ public class CountClumpsTest {
 		
 		assertEquals(3,result);
 	}
+	
+	@Test
+	public void testFail1() {
+		int elementsArray[]={1,1,2,1,1};
+		CountClumps obj=new CountClumps();
+		int result=obj.getNumberOfClumps(elementsArray);
+		
+		assertNotEquals(3,result);
+	}
+	
+	@Test
+	public void emptyArrayTest() {
+		int elementsArray[]={};
+		CountClumps obj=new CountClumps();
+		int result=obj.getNumberOfClumps(elementsArray);
+		
+		assertEquals(3,result);
+	}
 
 }

@@ -15,44 +15,91 @@ public class FixXY {
 	{
 		int i;
 		int testPrev=0;
-		int returnArray[]=arr; //5 4 9 4 9 5
-		for(i=0;i<returnArray.length;i++)
+		if(! isArraySafe(arr,x,y))
 		{
-			if(returnArray[i]==x)
+			throw new AssertionError("some error present");
+		}
+		else
+		{
+			int returnArray[]=arr; 
+			for(i=0;i<returnArray.length;i++)
 			{
-				if(returnArray[i+1]==y)
+				if(returnArray[i]==x)
 				{
-					continue;
-				}
-				else
-				{
-					int index=i+1;
-					for(int j=0;j<returnArray.length;j++)
+					if(returnArray[i+1]==y)
 					{
-						if(j>0)
+						continue;
+					}
+					else
+					{
+						int index=i+1;
+						for(int j=0;j<returnArray.length;j++)
 						{
-							testPrev=j-1;
-						}
-						
-						if(returnArray[j]==y && (returnArray[testPrev]!=x))
-						{
-							int temp=returnArray[index]; //temporary variable to store value to be swapped
-							returnArray[index]=returnArray[j];
-							returnArray[j]=temp;
-						}
-						else
-						{
-							continue;
+							if(j>0)
+							{
+								testPrev=j-1;
+							}
+							
+							if(returnArray[j]==y && (returnArray[testPrev]!=x))
+							{
+								int temp=returnArray[index]; //temporary variable to store value to be swapped
+								returnArray[index]=returnArray[j];
+								returnArray[j]=temp;
+							}
+							else
+							{
+								continue;
+							}
 						}
 					}
 				}
+				else
+				{
+					continue;
+				}
 			}
-			else
-			{
-				continue;
-			}
+			return returnArray;
 		}
-		return returnArray;
 	}
 	
+	/*
+     * method is used to validate the array
+     * @param arr as input array
+     * @param x as integer
+     * @param y as integer
+     * @return true if array is valid
+     * @return false if array is not valid
+     */
+	public boolean isArraySafe(int arr[],int x,int y)
+	{
+		int xCount=0;
+		int yCount=0;
+		if(arr.length==0)
+		{
+			return false;
+		}
+		
+		if(arr[arr.length-1]==x)
+		{
+			return false;
+		}
+		else
+		{
+			for(int i=0;i<arr.length;i++)
+			{
+				if(arr[i]==x && arr[i+1]==x)
+					return false;
+				
+				if(arr[i]==x)
+					xCount++;
+				if(arr[i]==y)
+					yCount++;
+			}
+			if(xCount!=yCount)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

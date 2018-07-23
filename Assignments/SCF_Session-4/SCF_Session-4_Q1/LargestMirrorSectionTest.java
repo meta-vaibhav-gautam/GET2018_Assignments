@@ -22,5 +22,23 @@ public class LargestMirrorSectionTest {
 		
 		assertEquals(4,result);
 	}
+	
+	@Test
+	public void emptyArrayTest() {
+		int elementsArray[]={};
+		LargestMirrorSection obj=new LargestMirrorSection();
+		int result=obj.findLargestMirrorSection(elementsArray);
+		
+		assertEquals(4,result);
+	}
+	
 
+	@Test
+	public void testFail1() {
+		int elementsArray[]={1,2,3,8,9,3,2,1};
+		LargestMirrorSection obj=new LargestMirrorSection();
+		int result=obj.findLargestMirrorSection(elementsArray);
+		
+		assertNotEquals(4,result);
+	}
 }

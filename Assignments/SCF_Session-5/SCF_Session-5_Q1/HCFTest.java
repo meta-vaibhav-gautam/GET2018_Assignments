@@ -2,7 +2,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/*
+ * class containing test cases and 
+ * methods to test the program
+ */
 public class HCFTest {
 
 	@Test
@@ -22,6 +25,6 @@ public class HCFTest {
 		HCF obj=new HCF();
 		int result=obj.findHCF(x, y);
 		
-		assertEquals(10, result);
+		assertNotEquals(10, result);
 	}
 }

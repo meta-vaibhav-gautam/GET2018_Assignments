@@ -2,7 +2,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/*
+ * class containing test cases and 
+ * methods to test the program
+ */
 public class NQueensProblemTest {
 
 	@Test
@@ -20,7 +23,7 @@ public class NQueensProblemTest {
         NQueensProblem obj=new NQueensProblem();
         boolean result=obj.solveNQ(n);
         
-        assertEquals(false, result);
+        assertNotEquals(false, result);
 	}
 
 }

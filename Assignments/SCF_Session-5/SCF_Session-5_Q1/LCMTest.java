@@ -2,7 +2,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/*
+ * class containing test cases and 
+ * methods to test the program
+ */
 public class LCMTest {
 
 	@Test
@@ -22,7 +25,7 @@ public class LCMTest {
 		LCM obj=new LCM();
 		int result=obj.findLCM(x, y);
 		
-		assertEquals(10, result);
+		assertNotEquals(10, result);
 	}
 
 }

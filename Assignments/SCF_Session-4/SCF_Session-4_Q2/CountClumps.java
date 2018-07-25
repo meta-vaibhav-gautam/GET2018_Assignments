@@ -19,22 +19,20 @@ public class CountClumps {
         }
         else
         {
-	        int temp = 1; //A temporary variable 
-	        while (i != arr.length - 1) {
-	            while (arr[temp] == arr[i]) {
-	                flag = true;
-	                if (temp == arr.length - 1) {
-	                    break;
-	                } else {
-	                    temp++;
-	                }
-	            }
-	            if (flag) {
-	                clumpsCount++;
-	            }
-	            i = temp;
-	            temp++;
-	            flag = false;
+	        for(i=0;i<(arr.length-1);i++)
+	        {
+	        	if(arr[i]==arr[i+1]) //condition satisfying clumps
+	        	{
+	        		if(!(flag))
+	        		{
+	        			flag=true;
+	        			clumpsCount++;
+	        		}
+	        	}
+	        	else
+        		{
+        			flag=false;
+        		}
 	        }
 	        return clumpsCount;
         }

@@ -5,18 +5,11 @@ public class Area {
 	 *finds the area of triangle
 	 *@param width of base
 	 *@param height of triangle
-	 *@return area calculated
+	 *@return area computed
 	 */
 	public double triangleArea(double width, double height)
 	{
-		if(width<0 || height<0)
-		{
-			return 0;
-		}
-		else
-		{
-			return (width*height)/2;
-		}
+		return (width*height)/2;
 	}
 	
 	/*
@@ -27,14 +20,7 @@ public class Area {
 	 */
 	public double rectangleArea(double width, double height)
 	{
-		if(width<0 || height<0)
-		{
-			return 0;
-		}
-		else
-		{
-			return (width*height);
-		}
+		return (width*height);
 	}
 	
 	/*
@@ -44,14 +30,7 @@ public class Area {
 	 */
 	public double squareArea(double width)
 	{
-		if(width<0)
-		{
-			return 0;
-		}
-		else
-		{
-			return (width*width);
-		}
+		return (width*width);
 	}
 	
 	/*
@@ -61,13 +40,6 @@ public class Area {
 	 */
 	public double cicleArea(double radius)
 	{
-		if(radius<0)
-		{
-			return 0;
-		}
-		else
-		{
 			return (3.14*radius*radius);
-		}
 	}
 }

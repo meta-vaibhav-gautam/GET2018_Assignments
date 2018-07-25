@@ -14,12 +14,12 @@ public class ImplementJobScheduler {
 			{
 				if(j==1)
 				{
-					System.out.println("enter arrival time of job "+(i+1));
+					System.out.println("enter burst time of job "+(i+1));
 					arrivalAndBurstTimes[i][j]=sc.nextInt();
 				}
 				else
 				{
-					System.out.println("enter burst time of job "+(i+1));
+					System.out.println("enter arrival time of job "+(i+1));
 					arrivalAndBurstTimes[i][j]=sc.nextInt();
 				}
 			}

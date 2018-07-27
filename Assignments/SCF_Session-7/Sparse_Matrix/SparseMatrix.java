@@ -54,7 +54,10 @@ public final class SparseMatrix {
         int sparseMatrix[][] = convertToOptimizedMatrix();
         int transposedMatrix[][] = sortTheMatrix(calculateTransposeOfMatrix()); //getting sorted transpose of matrix 
         int columnCount = sparseMatrix[0].length;
-
+        
+        System.out.println("---------sorted----------");
+        printSparseMatrix(sortTheMatrix(matrix));
+        
         for (rowNumber = 0; rowNumber < rowCount; rowNumber++) {
 
             for (columnNumber = 0; columnNumber < columnCount; columnNumber++) {
@@ -73,16 +76,16 @@ public final class SparseMatrix {
      * @return resultantMatrix as sum of two matrices
      */
     public int[][] addMatrices(SparseMatrix s1, SparseMatrix s2) {
-        int firstMatrix[][] = s1.getSparseMatrix();
-        printSparseMatrix(s1.convertToOptimizedMatrix());
-        System.out.println("-------------------------");
-        printSparseMatrix(sortTheMatrix(s1.convertToOptimizedMatrix()));
-        
-        int secondMatrix[][] = s2.getSparseMatrix();
-        int columnCount = firstMatrix[0].length + secondMatrix[0].length;
+    	int resultantMatrix[][];
+        int firstMatrix[][] = s1.convertToOptimizedMatrix();
+        int secondMatrix[][] = s2.convertToOptimizedMatrix();
+        int columnCountForResultantMatrix = firstMatrix[0].length + secondMatrix[0].length;
         int firstMatrixColumnCount = firstMatrix[0].length;
-        int resultantMatrix[][] = new int[3][columnCount];
-
+        int secondMatrixColumnCount=secondMatrix[0].length;
+        int commonElementCount=0;
+        int index=0,i=0;
+        resultantMatrix= new int[3][columnCountForResultantMatrix];
+        
         int returningResultantMatrix[][];
         for (int columnNumber = 0; columnNumber < firstMatrix[0].length; columnNumber++) {
             resultantMatrix[0][columnNumber] = firstMatrix[0][columnNumber];
@@ -96,40 +99,69 @@ public final class SparseMatrix {
         }
 
         resultantMatrix = sortTheMatrix(resultantMatrix);
-
-        //printSparseMatrix(resultantMatrix); ////////////////////////////////////
-
-        returningResultantMatrix = new int[3][resultantMatrix[0].length];
-        for (int columnNumber = 0; columnNumber < resultantMatrix[0].length; columnNumber++) {
+        
+        //count no. of common element to be used in finding length of returning matrix
+        while(i<firstMatrixColumnCount && i<secondMatrixColumnCount) {
+        	if((firstMatrix[0][index]==secondMatrix[0][index]) && (firstMatrix[1][index]==secondMatrix[1][index])) {
+        		commonElementCount++;
+        	}
+        	i++;
+        }
+        
+        returningResultantMatrix = new int[3][resultantMatrix[0].length-commonElementCount]; //common values of resultant matrix will be added and stored in this matrix
+        
+        for (int columnNumber = 0; columnNumber < resultantMatrix[0].length-1; columnNumber++) {
+        	
             if (resultantMatrix[0][columnNumber] != resultantMatrix[0][columnNumber + 1] || resultantMatrix[1][columnNumber] != resultantMatrix[1][columnNumber + 1]) {
 
-                returningResultantMatrix[0][columnNumber] = resultantMatrix[0][columnNumber];
-                returningResultantMatrix[1][columnNumber] = resultantMatrix[1][columnNumber];
-                returningResultantMatrix[2][columnNumber] = resultantMatrix[2][columnNumber];
+                returningResultantMatrix[0][index] = resultantMatrix[0][columnNumber];
+                returningResultantMatrix[1][index] = resultantMatrix[1][columnNumber];
+                returningResultantMatrix[2][index] = resultantMatrix[2][columnNumber];
 
             } else {
 
-                int index = columnNumber;
-                returningResultantMatrix[0][columnNumber] = resultantMatrix[0][columnNumber];
-                returningResultantMatrix[1][columnNumber] = resultantMatrix[1][columnNumber];
-
-                if ((index != resultantMatrix[0].length - 1)) {
-
-                    while (resultantMatrix[0][index] == resultantMatrix[0][index + 1] && resultantMatrix[1][index] == resultantMatrix[1][index + 1]) {
-                        returningResultantMatrix[2][index] += resultantMatrix[2][index] + resultantMatrix[2][index + 1];
-                        index++;
-                    }
-
-                    columnNumber = index + 1;
-                } else {
-                    returningResultantMatrix[2][columnNumber] = resultantMatrix[2][columnNumber];
-                }
+                returningResultantMatrix[0][index] = resultantMatrix[0][columnNumber];
+                returningResultantMatrix[1][index] = resultantMatrix[1][columnNumber];
+                returningResultantMatrix[2][index] = resultantMatrix[2][columnNumber]+resultantMatrix[2][columnNumber+1];
+                columnNumber++;
             }
+            index++;
+        }
+        return returningResultantMatrix;
+    }
 
+    /*method is used to obtain product of two matrices
+     * @param SparseMatrix object as s1
+     * @param SparseMatrix object as s2
+     * @return a 2D array as product
+     */
+    public int[][] multiplyMatrices(SparseMatrix s1, SparseMatrix s2) {
+    	int resultantMatrix[][];
+        int firstMatrix[][] = s1.convertToOptimizedMatrix();
+        int secondMatrix[][] = sortTheMatrix(s2.calculateTransposeOfMatrix());
+        int columnCountForResultantMatrix = firstMatrix[0].length > secondMatrix[0].length?firstMatrix[0].length:secondMatrix[0].length;
+        int firstMatrixColumnCount = firstMatrix[0].length;
+        int secondMatrixColumnCount=secondMatrix[0].length;
+        
+        resultantMatrix= new int[3][columnCountForResultantMatrix];
+        
+        for(int columnNumber=0 ; columnNumber<firstMatrixColumnCount ; columnNumber++) {
+        	
+        	for(int columnNumberOfSecondMatrix=0;columnNumberOfSecondMatrix<secondMatrixColumnCount;columnNumberOfSecondMatrix++) {
+        		
+        		if(firstMatrix[1][columnNumber]==secondMatrix[1][columnNumberOfSecondMatrix]) {
+        			
+        			int rowValue=firstMatrix[0][columnNumber];
+        			int columnValue=secondMatrix[0][columnNumberOfSecondMatrix];
+        			resultantMatrix[rowValue][columnValue]=firstMatrix[2][columnNumber]*secondMatrix[2][columnNumber];
+        			
+        			
+        		}
+        	}
         }
         return resultantMatrix;
     }
-
+    
     /*
      * method is used to convert the matrix in optimized form
      * @param matrix as 2D array
@@ -198,8 +230,8 @@ public final class SparseMatrix {
         for (columnNumber = 0; columnNumber < columnCount - 1; columnNumber++) {
             for (tempColumnNumber = 0; tempColumnNumber < columnCount - columnNumber - 1; tempColumnNumber++) {
                 int index = tempColumnNumber;
-
-                if (sortedSparseMatrix[0][index] >sortedSparseMatrix[0][index + 1] ) {
+                
+                if (sortedSparseMatrix[0][index] >sortedSparseMatrix[0][index + 1]) {
 
                     int temp = sortedSparseMatrix[0][index];
                     sortedSparseMatrix[0][index] = sortedSparseMatrix[0][index + 1];
@@ -213,33 +245,29 @@ public final class SparseMatrix {
                     sortedSparseMatrix[2][index] = sortedSparseMatrix[2][index + 1];
                     sortedSparseMatrix[2][index + 1] = temp;
 
+                } else {
+                	 if (sortedSparseMatrix[0][index] == sortedSparseMatrix[0][index + 1]) {
+                     	if (sortedSparseMatrix[1][index] > sortedSparseMatrix[1][index + 1]) {
+                     		int temp = sortedSparseMatrix[0][index];
+                             sortedSparseMatrix[0][index] = sortedSparseMatrix[0][index + 1];
+                             sortedSparseMatrix[0][index + 1] = temp;
+
+                             temp = sortedSparseMatrix[1][index];
+                             sortedSparseMatrix[1][index] = sortedSparseMatrix[1][index + 1];
+                             sortedSparseMatrix[1][index + 1] = temp;
+
+                             temp = sortedSparseMatrix[2][index];
+                             sortedSparseMatrix[2][index] = sortedSparseMatrix[2][index + 1];
+                             sortedSparseMatrix[2][index + 1] = temp;
+                     	}
+                     }
+
                 }
             }
         }
 
         return sortedSparseMatrix;
     }
-
-    /*private int[][] sort(int matrix[][]) {
-    	int maximumColumnNumber=0;
-    	int elementCount=0;
-    	int columnCount=matrix[0].length;
-    	
-    	for(int column=0 ; column<columnCount ; column++) {
-    		if(maximumColumnNumber<matrix[1][column]) {
-    			maximumColumnNumber=matrix[1][column];
-    		}
-    	}
-    	
-    	int lengthOfTemporaryArray=maximumColumnNumber+1; 
-    	int temporaryArray[]=new int [lengthOfTemporaryArray];
-    	int index=0;
-    	for(int column=0 ; column<columnCount ; column++) {
-    		if(index==matrix[1][column]) {
-    			elementCount++;
-    		}
-    	}
-    }*/
 
     /*
      * method is used to print sparse matrix completely 

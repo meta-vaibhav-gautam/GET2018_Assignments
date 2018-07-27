@@ -1,8 +1,15 @@
 import java.util.Scanner;
 
-
+/*
+ * class containing main method
+ * created on july 26, 2018
+ */
 public class SparseMatrixMain {
 
+	/*
+	 * method is used to take input from user
+	 * @return a 2D matrix entered by user
+	 */
 	public static int[][] takeInput() {
 		int rowCount=0,columnCount=0;
 		Scanner sc=new Scanner(System.in);
@@ -25,34 +32,51 @@ public class SparseMatrixMain {
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("Enter your choice\n1. transpose\n2. is symmetric\n3. add matrix\n4. multiply matrix\n");
+		Scanner sc=new Scanner(System.in);
+		int choice=sc.nextInt();
 		SparseMatrix sparseMatrix;
-		/*int matrix[][];
-		matrix=takeInput();
-		sparseMatrix=new SparseMatrix(matrix);
-		int transpose[][]=sparseMatrix.calculateTransposeOfMatrix();
+		SparseMatrix sparseMatrix1;
+		SparseMatrix sparseMatrix2;
 		
-		for(int i=0;i<transpose.length;i++) {
-			for(int j=0;j<transpose[0].length;j++) {
-				System.out.print(transpose[i][j]+" ");
-			}
-			System.out.println();
-		}
-		
-		System.out.println("\nCheck for symmetrical : "+sparseMatrix.checkForSymmetricalMatrix());
-		*/
-		int matrix1[][]=takeInput();
-		SparseMatrix sparseMatrix1=new SparseMatrix(matrix1);
-		int matrix2[][]=takeInput();
-		SparseMatrix sparseMatrix2=new SparseMatrix(matrix2);
-		
-		int resultantMatrix[][]=sparseMatrix1.addMatrices(sparseMatrix1, sparseMatrix2);
-		
-		System.out.println("\nSum::::\n");
-		for(int i=0;i<resultantMatrix.length;i++) {
-			for(int j=0;j<resultantMatrix[0].length;j++) {
-				System.out.print(resultantMatrix[i][j]+" ");
-			}
-			System.out.println();
+		switch(choice) {
+			case 1:
+				int matrix[][]=takeInput();
+				sparseMatrix=new SparseMatrix(matrix);
+				System.out.println("\nEntered Matrix:\n");
+				int transposedMatrix[][]=sparseMatrix.calculateTransposeOfMatrix();
+				System.out.println("\nTranspose Matrix:\n");
+				sparseMatrix.printSparseMatrix(transposedMatrix);
+				break;
+				
+			case 2:
+				int symmetricMatrix[][]=takeInput();
+				sparseMatrix=new SparseMatrix(symmetricMatrix);
+				System.out.println("Check for symmetric matrix: "+sparseMatrix.checkForSymmetricalMatrix());
+				break;
+				
+			case 3:
+				System.out.println("\n1st Matrix:\n");
+				int matrix1[][]=takeInput();
+				sparseMatrix1=new SparseMatrix(matrix1);
+				System.out.println("\n2nd Matrix:\n");
+				int matrix2[][]=takeInput();
+				sparseMatrix2=new SparseMatrix(matrix2);
+				int result[][]=sparseMatrix2.addMatrices(sparseMatrix1, sparseMatrix2);
+				sparseMatrix2.printSparseMatrix(result);
+				break;
+			case 4:
+				System.out.println("\n1st Matrix:\n");
+				int matrix3[][]=takeInput();
+				sparseMatrix1=new SparseMatrix(matrix3);
+				System.out.println("\n2nd Matrix:\n");
+				int matrix4[][]=takeInput();
+				sparseMatrix2=new SparseMatrix(matrix4);
+				int result1[][]=sparseMatrix2.addMatrices(sparseMatrix1, sparseMatrix2);
+				sparseMatrix2.printSparseMatrix(result1);
+				break;
+			default:
+				System.out.println("Incorrect choice...");
 		}
 	}
 

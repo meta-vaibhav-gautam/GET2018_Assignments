@@ -72,7 +72,7 @@ public class SparseMatrixMain {
 				System.out.println("\n2nd Matrix:\n");
 				int matrix4[][]=takeInput();
 				sparseMatrix2=new SparseMatrix(matrix4);
-				int result1[][]=sparseMatrix2.addMatrices(sparseMatrix1, sparseMatrix2);
+				int result1[][]=sparseMatrix2.multiplyMatrices(sparseMatrix1, sparseMatrix2);
 				sparseMatrix2.printSparseMatrix(result1);
 				break;
 			default:

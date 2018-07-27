@@ -53,11 +53,8 @@ public final class SparseMatrix {
 
         int sparseMatrix[][] = convertToOptimizedMatrix();
         int transposedMatrix[][] = sortTheMatrix(calculateTransposeOfMatrix()); //getting sorted transpose of matrix 
+        
         int columnCount = sparseMatrix[0].length;
-        
-        System.out.println("---------sorted----------");
-        printSparseMatrix(sortTheMatrix(matrix));
-        
         for (rowNumber = 0; rowNumber < rowCount; rowNumber++) {
 
             for (columnNumber = 0; columnNumber < columnCount; columnNumber++) {
@@ -137,31 +134,32 @@ public final class SparseMatrix {
      */
     public int[][] multiplyMatrices(SparseMatrix s1, SparseMatrix s2) {
     	int resultantMatrix[][];
-        int firstMatrix[][] = s1.convertToOptimizedMatrix();
-        int secondMatrix[][] = sortTheMatrix(s2.calculateTransposeOfMatrix());
-        int columnCountForResultantMatrix = firstMatrix[0].length > secondMatrix[0].length?firstMatrix[0].length:secondMatrix[0].length;
-        int firstMatrixColumnCount = firstMatrix[0].length;
-        int secondMatrixColumnCount=secondMatrix[0].length;
-        
-        resultantMatrix= new int[3][columnCountForResultantMatrix];
-        
-        for(int columnNumber=0 ; columnNumber<firstMatrixColumnCount ; columnNumber++) {
-        	
-        	for(int columnNumberOfSecondMatrix=0;columnNumberOfSecondMatrix<secondMatrixColumnCount;columnNumberOfSecondMatrix++) {
-        		
-        		if(firstMatrix[1][columnNumber]==secondMatrix[1][columnNumberOfSecondMatrix]) {
-        			
-        			int rowValue=firstMatrix[0][columnNumber];
-        			int columnValue=secondMatrix[0][columnNumberOfSecondMatrix];
-        			resultantMatrix[rowValue][columnValue]=firstMatrix[2][columnNumber]*secondMatrix[2][columnNumber];
-        			
-        			
-        		}
-        	}
-        }
-        return resultantMatrix;
+    	int firstMatrix[][]=s1.matrix;
+    	int secondMatrix[][]=s2.matrix;
+    	resultantMatrix=new int[firstMatrix.length][secondMatrix[0].length];
+    	firstMatrix=s1.convertToOptimizedMatrix();
+    	secondMatrix=sortTheMatrix(s2.calculateTransposeOfMatrix());
+    	int k=0;
+    	for(int i=0;i<resultantMatrix.length;i++) {
+    		
+    		for(int j=0;j<resultantMatrix[0].length;j++) {
+    			
+    			for(int temp=0;temp<secondMatrix[0].length;temp++) {
+    				
+    				if(firstMatrix[1][j]==secondMatrix[1][temp]) {
+        				resultantMatrix[j][temp]=firstMatrix[2][j]*secondMatrix[2][temp];
+        			} else {
+        				resultantMatrix[j][temp]=0;
+        			}
+    			}
+    		}
+    	}
+    	
+    	SparseMatrix temporaryObject=new SparseMatrix(resultantMatrix);
+    	return temporaryObject.convertToOptimizedMatrix();
     }
-    
+    	
+
     /*
      * method is used to convert the matrix in optimized form
      * @param matrix as 2D array
@@ -265,7 +263,7 @@ public final class SparseMatrix {
                 }
             }
         }
-
+        
         return sortedSparseMatrix;
     }
 
@@ -274,7 +272,7 @@ public final class SparseMatrix {
      * @param sparseMatrix as 2-D array
      */
     public void printSparseMatrix(int sparseMatrix[][]) {
-        int rowCount = 3; //row count will always be 3 for a sparse matrix representation
+        int rowCount = sparseMatrix.length; //row count will always be 3 for a sparse matrix representation
         int columnCount = sparseMatrix[0].length;
         int rowNumber = 0, columnNumber = 0;
 

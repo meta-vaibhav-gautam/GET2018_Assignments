@@ -50,6 +50,37 @@ public class SparseMatrixTest {
 		assertNotEquals(false,flag);
 	}
 
+	//method to test CheckForSymmetricalMatrix success scenario
+	@Test
+	public void testCheckForSymmetricalMatrix_Success() {
+		int matrix[][]=new int[][] {
+				{0,1,0},
+				{1,0,1},
+				{0,1,0}
+		};
+		SparseMatrix sparseMatrix=new SparseMatrix(matrix);
+		
+		boolean flag=sparseMatrix.checkForSymmetricalMatrix();
+		
+		assertEquals(true,flag);
+	}
+
+	//method to test CheckForSymmetricalMatrix Failure scenario
+		@Test
+		public void testCheckForSymmetricalMatrix_Failure() {
+			int matrix[][]=new int[][] {
+					{1,0,0},
+					{1,0,1},
+					{0,1,0}
+			};
+			SparseMatrix sparseMatrix=new SparseMatrix(matrix);
+			
+			boolean flag=sparseMatrix.checkForSymmetricalMatrix();
+			
+			assertNotEquals(true,flag);
+		}
+
+	
 	//method to check if two matrices are equal or not
 	private boolean isMatrixEqual(int result[][],int expected[][]) {
 		boolean flag=true;

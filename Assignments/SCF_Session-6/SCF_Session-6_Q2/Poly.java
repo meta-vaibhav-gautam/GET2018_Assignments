@@ -13,13 +13,12 @@ public final class Poly implements polyInterface {
      * @param arr array as input
      */
     public void setPolynomialCoefficientArray(int[] arr) {
-        int length = polynomialCoefficientArray.length;
+        int length = arr.length;
         
         this.polynomialCoefficientArray = new int[length];
         int i = 0, j = 0;
         for (i = (length - 1), j = 0; i >= 0 && j < length; i--, j++) //reversing polynomialCoefficientArray
         {
-
             this.polynomialCoefficientArray[i] = arr[j];
         }
     }

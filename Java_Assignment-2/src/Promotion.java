@@ -5,5 +5,4 @@ interface Promotion {
 		public void setFixedDiscount(double discount);
 		public double getFixedDiscount(double amount);
 		public boolean isPromotionApplicable(String promoCode, double price);
-	
 }

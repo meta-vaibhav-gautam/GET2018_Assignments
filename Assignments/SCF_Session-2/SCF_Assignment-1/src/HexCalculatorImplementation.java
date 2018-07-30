@@ -1,5 +1,7 @@
 import java.util.Scanner;
-
+/*
+ * class contains main() method
+ */
 public class HexCalculatorImplementation {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
@@ -47,10 +49,10 @@ public class HexCalculatorImplementation {
                 System.out.println(obj.isLessThan(firstNumber, secondNumber));
                 break;
             case 8:
-                System.out.println(obj.hexToDecimal(data));
+                System.out.println(obj.convertHexToDecimal(data));
                 break;
             case 9:
-                System.out.println(obj.decimalToHex(data));
+                System.out.println(obj.convertDecimalToHex(data));
                 break;
             default:
                 System.out.println("Invalid input !");

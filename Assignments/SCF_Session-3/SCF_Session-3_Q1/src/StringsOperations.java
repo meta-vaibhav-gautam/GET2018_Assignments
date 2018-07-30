@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class StringsOperations {
 
     Scanner sc = new Scanner(System.in);
-    private int index = 0; //index for traking the alphabet position in array
+    private int index = 0; //index to track the alphabet position in array
     /*
      * compare two Strings
      * @param str1 as first string

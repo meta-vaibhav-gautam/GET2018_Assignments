@@ -8,6 +8,6 @@ public interface HexCalcMethods {
 	public boolean isEqual(String firstNumber, String secondNumber);
 	public boolean isGreaterThan(String firstNumber, String secondNumber);
 	public boolean isLessThan(String firstNumber, String secondNumber);
-	public String hexToDecimal(String number);
-	public String decimalToHex(String number);
+	public int convertHexToDecimal(String number);
+	public String convertDecimalToHex(String number);
 }

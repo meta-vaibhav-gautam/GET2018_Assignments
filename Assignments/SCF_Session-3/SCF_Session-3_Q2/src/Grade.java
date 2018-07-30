@@ -7,12 +7,12 @@ public class Grade {
      * @param list of grades
      * @return average of grades obtained
      */
-    public double findAverage(List < Integer > grades) {
+    public double findAverage(List < Integer > listOfGrades) {
         double total = 0;
-        for (Integer marks: grades) {
+        for (Integer marks: listOfGrades) {
             total += marks;
         }
-        return total / grades.size();
+        return total / listOfGrades.size();
     }
 
 

@@ -1,24 +1,9 @@
 import java.util.Scanner;
 import java.util.Stack;
-class Pallindrome{
-	public boolean checkPallindrome(String str){
-		boolean flag=false;
-		Stack stack=new Stack();
-		for(int i=0;i<str.length();i++){
-			stack.push(str.charAt(i));
-		}
-		
-		String reverseString="";
-		while(!stack.isEmpty()){
-			reverseString=reverseString+(stack.pop());
-		}
-		
-		if(reverseString.equals(str))
-			flag=true;
-		
-		return flag;
-	}
-}
+
+/*
+ * Class containing main method
+ */
 
 public class PallindromeCheck {
 	

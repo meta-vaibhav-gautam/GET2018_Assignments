@@ -2,13 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ * class containing main method
+ */
 public class GradeMain {
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter the no. of students: ");
 		int students=sc.nextInt();
-		List<Integer> grades=new ArrayList<Integer>(); 
+		List<Integer> ListOfGrades=new ArrayList<Integer>(); 
 		System.out.println("Enter grades: ");
 		try
 		{
@@ -17,11 +20,16 @@ public class GradeMain {
 				int marks=sc.nextInt();
 				if(marks>=0) //preventing negative numbers to be added into grades list
 				{
-					grades.add(i, marks);
+					ListOfGrades.add(i, marks);
 				}
 				else
 				{
-					grades.add(i,0);
+					while(marks<0)
+					{
+						System.out.println("\nIncorrect marks input, please enter valid marks!\n");
+						marks=sc.nextInt();
+					}
+					ListOfGrades.add(marks);
 				}
 			}
 		}
@@ -35,16 +43,16 @@ public class GradeMain {
 		Grade obj=new Grade();
 		switch(Choice){
 			case 1:
-				System.out.printf("Average marks:  %.2f",obj.findAverage(grades));
+				System.out.printf("Average marks:  %.2f",obj.findAverage(ListOfGrades));
 				break;
 			case 2:
-				System.out.println("Maximum marks: "+obj.getMaxMarks(grades));
+				System.out.println("Maximum marks: "+obj.getMaxMarks(ListOfGrades));
 				break;
 			case 3:
-				System.out.println("Minimum marks: "+obj.getMinMarks(grades));
+				System.out.println("Minimum marks: "+obj.getMinMarks(ListOfGrades));
 				break;
 			case 4:
-				System.out.printf("Percentage of Passed students: %.2f",obj.passedStudentPercent(grades));
+				System.out.printf("Percentage of Passed students: %.2f",obj.passedStudentPercent(ListOfGrades));
 				break;
 			default:
 				System.out.println("Incorrect choice...");

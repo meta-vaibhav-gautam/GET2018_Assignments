@@ -17,7 +17,7 @@ public class Zoo {
 
 	Map<Integer, Zone> zoneMap = new LinkedHashMap<Integer, Zone>(); //map containing information of all zones in zoo
 	Map<Integer, Cage> cageMap = new LinkedHashMap<Integer, Cage>(); //map containing information of cages present in zone of the zoo
-	Map<Integer, Animal> animalMap = new LinkedHashMap<Integer, Animal>(); //map containing information of the animals present in zoo
+	Map<String, Animal> animalMap = new LinkedHashMap<String, Animal>(); //map containing information of the animals present in zoo
 
 	private Scanner scanner = new Scanner(System.in);
 
@@ -80,7 +80,7 @@ public class Zoo {
 			
 			String name=scanner.next();
 			for(AnimalsName value: AnimalsName.values()){
-				System.out.println(name+":::::::"+value.name());
+				
 				if(name.equalsIgnoreCase(value.name())) {
 					name=value.name();
 					break;
@@ -141,7 +141,8 @@ public class Zoo {
 					indexTraversed++;
 					if(cage.getTypeOfAnimalInCage().equalsIgnoreCase(animal.name) && cage.isSpaceAvailable()) {
 						cage.animalList.add(animal);
-						System.out.println("Animal added successfully. Please note the Id of this animal which is "+animal.uniqueIdForAnimal);
+						animalMap.put(animal.uniqueIdForAnimal, animal);
+						System.out.println("Animal added successfully in cage with cage Id"+cage.getCageId()+". Please note the Id of this animal which is "+animal.uniqueIdForAnimal);
 						break;
 					} else {
 						if(indexTraversed==cagesList.size()){
@@ -152,6 +153,7 @@ public class Zoo {
 								zone.getCageList().add(cage1); // a new cage is created and added in the cage list of the zone
 								cageMap.put(uidCage, cage1); //cageMap is updated with newly created cage
 								cage1.animalList.add(animal);
+								animalMap.put(animal.uniqueIdForAnimal, animal);
 								System.out.println("Animal added successFully. Please note animal Id: "+animal.uniqueIdForAnimal+" and cage Id: "+cage1.getCageId());
 								
 							} else {
@@ -179,26 +181,28 @@ public class Zoo {
 	private int removeAnimal() {
 		System.out.println("Enter animal id: ");
 		String animalId=scanner.next();
-		System.out.println("Enter cage id in which animal is there: ");
-		int cageId=scanner.nextInt();
-		Cage cage=cageMap.get(cageId);
-		if(cage!=null) {
-			List<Animal> listOfanimals=cage.animalList;
-			for(Animal animal:listOfanimals) {
-				if(animal.uniqueIdForAnimal.equals(animalId)) {
-					cage.animalList.remove(animal);
-					animalMap.remove(animal.uniqueIdForAnimal);
-					
+		Animal animalObj=animalMap.get(animalId);
+		if(animalObj!=null) {
+			System.out.println("Enter cage id in which animal is there: ");
+			int cageId=scanner.nextInt();
+			Cage cage=cageMap.get(cageId);
+			if(cage!=null) {
+				List<Animal> listOfanimals=cage.animalList;
+				for(Animal animal:listOfanimals) {
+					if(animal.uniqueIdForAnimal.equals(animalId)) {
+						cage.animalList.remove(animal);
+						animalMap.remove(animal.uniqueIdForAnimal);
+						
+					}
 				}
+			} else {
+				System.out.println("Incorrect cageId");
+				return 0;
 			}
-		} else {
-			System.out.println("Incorrect cageId");
-			return 0;
-		}
-		Animal animal=animalMap.get(animalId);
-		if(animal!=null) {
-			
-		} else {
+		} 
+		
+		
+		else {
 			System.out.println("Incorrect animal Id");
 			return 0;
 		}
@@ -272,7 +276,7 @@ public class Zoo {
 					System.out.println("No space For adding More Cages.");
 				} else {
 
-					System.out.println("Please Enter Animal Type For Cage (eg. lion, cat etc.)");
+					System.out.println("Please Enter Animal Type For Cage (eg. lion)");
 					String animalTypeForCage = scanner.next();
 
 					System.out.println("Please Enter capacity of this cage:");

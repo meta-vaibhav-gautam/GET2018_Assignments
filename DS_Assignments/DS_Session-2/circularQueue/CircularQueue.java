@@ -20,21 +20,20 @@ public class CircularQueue {
 	 * method to add elements to queue
 	 * return 1 if successfully added otherwise return 0
 	 */
-	public int addElementToQueue(int element) {
+	public boolean addElementToQueue(int element) {
 		int index;
 		index = (endIndex+1)% queueArray.length;
 
         if(index == frontIndex) {
         	 System.out.println("Queue Overflow ");
-        	 return 0;
+        	 return false;
         }
        
         endIndex = index;
         queueArray[endIndex] = element;
         if(frontIndex == -1)
             frontIndex = 0;
-      
-        return 1;
+        return true;
 	}
 
 	/*
@@ -42,8 +41,9 @@ public class CircularQueue {
 	 * returns 1 if successfully removed otherwise return 0
 	 */
 	public int deleteElementFromQueue() {
+		int data = queueArray[frontIndex];
 		frontIndex = (frontIndex+1)% queueArray.length;
-		return 1;
+		return data;
 	}
 
 

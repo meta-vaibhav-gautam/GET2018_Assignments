@@ -1,8 +1,6 @@
 package Q_7;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class NestedList {
 	
@@ -12,7 +10,7 @@ public class NestedList {
 		this.nestedList = nestedList;
 	}
 	
-	public String getValue(String positionSpecifier, List<Object> nestedList) {
+	public String getValue(String positionSpecifier) {
 		positionSpecifier = positionSpecifier.toUpperCase();
 		Object listElement = null;
 		
@@ -49,42 +47,6 @@ public class NestedList {
 			return "Exception  occurred !";
 		}
 		
-	}
-	
-	public static List<Object> takeInput(List<Object> inputList) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter type of element you want to add: \n1. List Of Integers\n2. Integer Value\n(Press 3 to exit !)");
-		int choice = scanner.nextInt();
-		switch (choice) {
-			case 1:
-				System.out.println("Enter the number of elements in this list:");
-				int numberOfElements = scanner.nextInt();
-				for(int j=0; j< numberOfElements ;j++){
-					System.out.println("Enter the elements:");
-					List<Object> innerList = new LinkedList<Object>();
-					for(int i=0;i<numberOfElements;i++) {
-						inputList.add(innerList);
-					}
-					inputList = takeInput(inputList);
-				}
-				break;
-				
-			case 2:
-				for(int j=0; j<inputList.size() ;j++) {
-					System.out.println("Enter the number of elements:");
-					numberOfElements = scanner.nextInt();
-					System.out.println("Enter the elements:");
-					for(int i=0;i<numberOfElements;i++) {
-						inputList.add(scanner.nextInt());
-					}
-				}
-				
-				break;
-				
-			default:
-				break;
-		}
-		return inputList;
 	}
 
 	private boolean isValid(String positionSpecifier) {

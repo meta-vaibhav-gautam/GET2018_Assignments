@@ -25,7 +25,6 @@ public class BowlingOrderDecision {
 		int totalBalls = 0,listIndex=0;
 		while (totalBalls < numberOfBalls && index!=bowlersList.length) {
 			totalBalls += bowlersList[index++].getNumberOfBalls();
-			index++;
 		}
 		if(index == bowlersList.length && totalBalls < numberOfBalls) {
 			return null;

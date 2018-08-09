@@ -4,7 +4,7 @@ package employeeCollection;
  * class containing attributes of the employee
  * created on August August 08, 2018
  */
-public class Employee {
+public class Employee implements Comparable<Employee> {
 	private int employeeId;
 	private String employeeName;
 	private String employeeAddress;
@@ -35,5 +35,13 @@ public class Employee {
 		return employeeAddress;
 	}
 	
+	/**
+	 * overriden comparable interface method that sorts on the basis of employee id
+	 * @return compared value 
+	 */
+	@Override
+	public int compareTo(Employee employee) {
+		return (this.employeeId - employee.getEmployeeId());
+	}
 	
 }

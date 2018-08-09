@@ -13,7 +13,7 @@ public class EmployeeCollection {
 	/**
 	 * method adds unique values of employee into collection
 	 * @param employee as Employee object
-	 * @return true if added succesfully otherwise return false
+	 * @return true if added successfully otherwise return false
 	 */
 	public boolean addEmployeeToCollection(Employee employee) {
 		try {
@@ -38,9 +38,10 @@ public class EmployeeCollection {
 			System.out.println("No emplyee to sort !\n");
 			return;
 		}
+		
 		for(int i=0;i<employeeList.size();i++) {
 			for(int j=0; j<(employeeList.size()-1)-i;j++) {
-				if(employeeList.get(j).getEmployeeId() > employeeList.get(j+1).getEmployeeId()) {
+				if(employeeList.get(j).compareTo(employeeList.get(j+1)) > 0) {
 					Employee tempObject1 = employeeList.get(j);
 					Employee tempObject2 = employeeList.get(j+1);
 					employeeList.remove(j);
@@ -101,6 +102,6 @@ public class EmployeeCollection {
 	public List<Employee> getEmployeeList() {
 		return employeeList;
 	}
-	
+
 	
 }

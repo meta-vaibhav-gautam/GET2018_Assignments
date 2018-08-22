@@ -13,7 +13,7 @@ import jdbcConnection.JDBCConnection;
  */
 public class OrderDetails {
 	private Connection connection;
-	
+	private List<OrdersDetailsPOJO> resultList;
 	/**
 	 * Method to get the Orders details of the user given
 	 * @param user Id as integer
@@ -34,6 +34,9 @@ public class OrderDetails {
 			System.out.println("No Orders information for this User !\n");
 		}
 		connection.close();
-		return OrdersDetailsPOJO.getResultList();
+		resultList=OrdersDetailsPOJO.getResultList();
+		return this.resultList;
 	}
 }
+
+

@@ -56,38 +56,35 @@ WHERE DATEDIFF(NOW(),o.Order_Date) BETWEEN 1 AND 90);
 SELECT * FROM Product;
 
 # SQL Query for given a category search keyword, display all the Products present in this category/categories. 
-
+drop PROCEDURE get_Products;
 DELIMITER //
-CREATE PROCEDURE get_tr(IN Category_Name VARCHAR(30))
+CREATE PROCEDURE get_Products(IN Category_Name VARCHAR(30))
  BEGIN
- DECLARE id int;
- DECLARE Parent_id int;
- 
- SELECT Category_Id into id 
- FROM Category WHERE Category_Name = Category_Name;
- 
- SELECT Parent_Category into Parent_id 
- FROM Category WHERE Category_id = id;
- 
- create TEMPORARY  table IF NOT EXISTS temp_table as (select Product_Id from Product_Category where 1=0);
- truncate table temp_table;
- 
+     DECLARE Category_Id int;
+     
+     SET Category_Id = (SELECT c.Category_Id 
+     FROM Category c WHERE c.Category_Name = Category_Name);
+     
+     CREATE TEMPORARY TABLE IF NOT EXISTS temp_table AS 
+     (SELECT pc.Product_Id,pc.Category_Id FROM Product_Category pc WHERE pc.Category_Id=Category_Id);
 
- WHILE Parent_id <> 0 DO
-   insert into temp_table select Product_Id from Product_Category WHERE Category_Id=Parent_id;
-   
-   SELECT Parent_Category into Parent_id 
-   FROM Category WHERE Category_id = id;
- 
-   SET Parent = child_id;
-   SET child_id=0;
-   SELECT Parent_Category into child_id
-   FROM Category WHERE Category_Id=prev_id;
- END WHILE;
- END //
+     SET Category_Id = (SELECT Parent_Category FROM Category c WHERE c.Category_Id=Category_Id); 
+     WHILE Category_Id <> 0 DO
+         INSERT INTO temp_table(Product_Id,Category_Id)
+         (SELECT pc.Product_Id,pc.Category_Id FROM Product_Category pc WHERE pc.Category_Id=Category_Id);
+           
+         SET Category_Id = (SELECT Parent_Category
+         FROM Category c WHERE c.Category_id = Category_Id);
+     
+     END WHILE;
+END //
 DELIMITER ; 
- CALL get_tr(5);
- select * from temp_table; 
+CALL get_Products('shirts');
+
+SELECT temp_table.Product_Id,Product.Product_Title,Category.Category_Name 
+FROM temp_table
+LEFT JOIN Product ON temp_table.Product_Id=Product.Product_Id
+LEFT JOIN Category ON Category.Category_Id=temp_table.Category_Id; 
 
 # SQL Query to display top 10 Items which were cancelled most.
 INSERT INTO Products_In_Order(Order_Id,Product_Id,Quantity,Status) values

@@ -40,4 +40,7 @@ public class OrdersDetailsPOJO {
 		return orderAmount;
 	}
 	
+	public static void emptyResultList() {
+		resultList.removeAll(resultList);
+	}
 }

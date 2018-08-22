@@ -34,4 +34,7 @@ public class CategoriesInParentCategoryPOJO {
 		return categoryCount;
 	}
 
+	public static void emptyResultList() {
+		resultList.removeAll(resultList);
+	}
 }

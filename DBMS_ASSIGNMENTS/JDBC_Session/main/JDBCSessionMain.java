@@ -37,6 +37,7 @@ public class JDBCSessionMain {
 						System.out.println("ORDER AMOUNT: "+value.getOrderAmount());
 						System.out.println("-------------------------------------------------------\n");
 					}
+					OrdersDetailsPOJO.emptyResultList();
 					break;
 				
 				case 2:
@@ -57,6 +58,7 @@ public class JDBCSessionMain {
 					for(CategoriesInParentCategoryPOJO val: list){
 						System.out.println(val.getCategoryName()+"  "+val.getCategoryCount());
 					}
+					CategoriesInParentCategoryPOJO.emptyResultList();
 					System.out.println("-------------------------------------------------------\n");					
 					break;
 					

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>ServletSession_1</display-name>
+  <servlet>
+    <display-name>addDetailsServlet</display-name>
+    <servlet-name>employeeDetails</servlet-name>
+    <servlet-class>com.servlets.AddEmployeeDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>employeeDetails</servlet-name>
+    <url-pattern>/AddEmployeeDetails</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>showEmployeeDetails</display-name>
+    <servlet-name>showEmployeeDetails</servlet-name>
+    <servlet-class>com.servlets.ShowAllEmployees</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showEmployeeDetails</servlet-name>
+    <url-pattern>/ShowAllEmployees</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>getEmployeeDetails</display-name>
+    <servlet-name>getEmployeeDetails</servlet-name>
+    <servlet-class>com.servlets.GetEmployeeDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getEmployeeDetails</servlet-name>
+    <url-pattern>/GetEmployeeDetails</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

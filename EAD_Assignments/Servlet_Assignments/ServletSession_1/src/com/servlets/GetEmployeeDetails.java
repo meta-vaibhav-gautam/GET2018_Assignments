@@ -3,14 +3,9 @@ package com.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,13 +24,13 @@ public class GetEmployeeDetails extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String name = (firstName+" "+lastName);
 		PrintWriter out = response.getWriter();
-		EmployeeOperation employeeOperation=new EmployeeOperation();
-		List<Employee> employeeList=employeeOperation.getEmployeesByName(name);
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		EmployeeOperation employeeOperation = new EmployeeOperation();
+		List<Employee> employeeList = employeeOperation.getEmployeesByName(name);
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		out.println("<html>");
+		out.println("<title>Employee Details</title>");
+		out.println("<body align=\"center\">");
 		if(employeeList.size()!=0) {
-			out.println("<html>");
-			out.println("<title>Employee Details</title>");
-			out.println("<body align=\"center\">");
 			out.println("<table align=\"center\" width=50%>");
 			out.println("<tr>");
 			out.println("<th><h1>Email</h1></th>");

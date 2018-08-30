@@ -10,9 +10,9 @@ public class Employee {
 	private int Employee_age;
 	
 	public Employee(String Employee_Email, String Employee_Name, int Employee_age) {
-		this.Employee_Email=Employee_Email;
-		this.Employee_Name=Employee_Name;
-		this.Employee_age=Employee_age;
+		this.Employee_Email = Employee_Email;
+		this.Employee_Name = Employee_Name;
+		this.Employee_age = Employee_age;
 	}
 
 	/**

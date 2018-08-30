@@ -2,9 +2,6 @@ package com.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.DAO.Employee;
 import com.DAO.EmployeeOperation;
-import com.DAO.JDBCConnection;
 
 /**
  * Servlet implementation class AddEmployeeDetails
@@ -30,7 +26,7 @@ public class AddEmployeeDetails extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		int age = Integer.parseInt(request.getParameter("age"));
-		Employee employee=new Employee(email, (firstName+" "+lastName),age);
+		Employee employee = new Employee(email, (firstName+" "+lastName),age);
 		PrintWriter out = response.getWriter();
 		EmployeeOperation employeeOperation=new EmployeeOperation();
 		if(employeeOperation.addEmployeeDetails(employee)) {

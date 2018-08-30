@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-
 /**
  * class containing method to perform operation on database
  * Created on August 30, 2018
@@ -21,8 +19,8 @@ public class EmployeeOperation {
 	 * @return true if employee added successfully
 	 */
 	public boolean addEmployeeDetails(Employee employee) {
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
-		boolean flag=false;
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		boolean flag = false;
 		if(connection!=null) {
 			String queryToAddEmployee = QueryDatabase.addEmployeeDetails();
 			try {
@@ -50,7 +48,7 @@ public class EmployeeOperation {
 	 */
 	public List<Employee> getAllEmployees() {
 		List<Employee> employeeList = new ArrayList<Employee>();
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
 		if(connection!=null) {
 			String queryToGetAllEmployees = QueryDatabase.getAllEmployees();
 			try {
@@ -70,12 +68,12 @@ public class EmployeeOperation {
 	
 	/**
 	 * method to get Employee details using name
-	 * @param name string
+	 * @param name of employee
 	 * @return list of employees
 	 */
 	public List<Employee> getEmployeesByName(String name) {
 		List<Employee> employeeList = new ArrayList<Employee>();
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
 		if(connection!=null) {
 			String queryToGetEmployeesByName = QueryDatabase.getEmployeeDetailsByName();
 			try {
@@ -100,10 +98,10 @@ public class EmployeeOperation {
 	 * @return true if employee updated successfully
 	 */
 	public boolean updateEmployeeDetails (Employee employee) {
-		String queryToUpdateEmployeeDetails=QueryDatabase.updateEmployeeDetails();
+		String queryToUpdateEmployeeDetails = QueryDatabase.updateEmployeeDetails();
 		int result=0;
-		boolean flag=false;
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		boolean flag = false;
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
 		try {
 			PreparedStatement preparedStatement=connection.prepareStatement(queryToUpdateEmployeeDetails);
 			preparedStatement.setString(1,employee.getEmployee_Name());
@@ -122,18 +120,18 @@ public class EmployeeOperation {
 	
 	/**
 	 * method to get Employee details from database
-	 * @param email string
+	 * @param email of employee
 	 * @return employee object
 	 */
 	public Employee getEmployeeDetails(String email) {
-		String queryToGetEmployeeDetails=QueryDatabase.getEmployeeDetails();
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
+		String queryToGetEmployeeDetails = QueryDatabase.getEmployeeDetails();
+		Connection connection = JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
 		Employee employee=null;
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = connection.prepareStatement(queryToGetEmployeeDetails);
 			preparedStatement.setString(1, email);
-			ResultSet resultset=preparedStatement.executeQuery();
+			ResultSet resultset = preparedStatement.executeQuery();
 			resultset.next();
 			employee=new Employee(resultset.getString("Employee_Email"), resultset.getString("Employee_Name"),
 					Integer.parseInt(resultset.getString("Employee_age")));

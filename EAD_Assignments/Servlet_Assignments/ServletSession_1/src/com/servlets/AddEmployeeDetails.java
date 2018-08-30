@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.DAO.Employee;
+import com.DAO.EmployeeOperation;
 import com.DAO.JDBCConnection;
 
 /**
@@ -28,41 +30,22 @@ public class AddEmployeeDetails extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		int age = Integer.parseInt(request.getParameter("age"));
-		
+		Employee employee=new Employee(email, (firstName+" "+lastName),age);
 		PrintWriter out = response.getWriter();
-		Connection connection=JDBCConnection.getDatabaseConnection("MetacubeDB", "root", "root");
-		if(connection!=null) {
-			String queryToAddEmployee = "INSERT INTO EMPLOYEE values (?,?,?)";
-			try {
-				PreparedStatement preparedStatement = connection.prepareStatement(queryToAddEmployee);
-				preparedStatement.setString(1, email);
-				preparedStatement.setString(2, (firstName+" "+lastName));
-				preparedStatement.setInt(3, age);
-				
-				int result = preparedStatement.executeUpdate();
-				if(result>0) {
-					 out.println("<html>");
-					 out.println("<h2 style=\"color:green;text-align:center;\">Employee Successfully Added !</h2>");
-					 out.println("</html>");
-					 
-					 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
-					 requestDispatcher.include(request, response);
-				} else {
-					response.sendRedirect("Error.html");
-				}
-				connection.close();
-			} catch (SQLException e) {
-				 out.println("<html>");
-				 out.println("<h2 style=\"color:red;text-align:center;\">Employee Already Present !</h2>");
-				 out.println("</html>");
-				 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
-				 requestDispatcher.include(request, response);
-				 
-				e.printStackTrace();
-			}
+		EmployeeOperation employeeOperation=new EmployeeOperation();
+		if(employeeOperation.addEmployeeDetails(employee)) {
+			 out.println("<html>");
+			 out.println("<h2 style=\"color:green;text-align:center;\">Employee Successfully Added !</h2>");
+			 out.println("</html>");
+			 
+			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
+			 requestDispatcher.include(request, response);
 		} else {
-			response.sendRedirect("Error.html");
+			 out.println("<html>");
+			 out.println("<h2 style=\"color:red;text-align:center;\">Employee already present !</h2>");
+			 out.println("</html>");
+			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
+			 requestDispatcher.include(request, response);
 		}
 	}
-
 }

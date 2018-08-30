@@ -10,7 +10,6 @@
     <servlet-name>employeeDetails</servlet-name>
     <url-pattern>/AddEmployeeDetails</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>showEmployeeDetails</display-name>
     <servlet-name>showEmployeeDetails</servlet-name>
@@ -20,7 +19,6 @@
     <servlet-name>showEmployeeDetails</servlet-name>
     <url-pattern>/ShowAllEmployees</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>getEmployeeDetails</display-name>
     <servlet-name>getEmployeeDetails</servlet-name>
@@ -29,6 +27,26 @@
   <servlet-mapping>
     <servlet-name>getEmployeeDetails</servlet-name>
     <url-pattern>/GetEmployeeDetails</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>showUpdateForm</display-name>
+    <servlet-name>showUpdateForm</servlet-name>
+    <servlet-class>com.servlets.ShowUpdateForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showUpdateForm</servlet-name>
+    <url-pattern>/ShowUpdateForm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <display-name>updateEmployeeDetails</display-name>
+    <servlet-name>updateEmployeeDetails</servlet-name>
+    <servlet-class>com.servlets.UpdateEmployeeDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateEmployeeDetails</servlet-name>
+    <url-pattern>/UpdateEmployeeDetails</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

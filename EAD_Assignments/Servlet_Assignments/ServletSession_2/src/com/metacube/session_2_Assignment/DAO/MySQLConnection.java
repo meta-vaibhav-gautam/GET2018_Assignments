@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MySQLConnection {
 	private static Connection connection;
 	private static String userName = "root";
-	private static String password = "root";
+	private static String password = "rat";
 
 	/**
 	 * method to load drivers and return the connection object

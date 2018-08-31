@@ -6,7 +6,7 @@ package com.metacube.session_2_Assignment.validator;
  */
 public class LoginValidation {
 	public boolean validateLoginPassword(String enteredPassword, String userPassword) {
-		if(userPassword.equals(enteredPassword)) {
+		if(enteredPassword.equals(userPassword)) {
 			return true;
 		}
 		return false;

@@ -5,6 +5,11 @@ package com.metacube.session_2_Assignment.DAO.queries;
  * created on August 31, 2018
  */
 public class MySQLUserDaoQueries {
-	public static final String queryToAddUser = "INSERT INTO user(email,firstname,lastname,age,birthday,contact,password,organization) VALUES (?,?,?,?,?,?,?,?)";
+	public static final String queryToAddUser = "INSERT INTO user(email,firstname,lastname,age,birthday,"
+			+ "contact,password,organization) VALUES (?,?,?,?,?,?,?,?)";
+	
 	public static final String queryToGetUserPassword = "SELECT password FROM user WHERE email = ?";
+	
+	public static final String queryToGetUserDetailsByEmail = "SELECT email,firstname,lastname,age,birthday,"
+			+ "contact,password,organization,image FROM user WHERE email = ?";
 }

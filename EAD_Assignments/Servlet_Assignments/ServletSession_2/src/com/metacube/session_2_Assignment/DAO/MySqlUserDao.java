@@ -13,8 +13,7 @@ import com.metacube.session_2_Assignment.model.User;
  * Class containing methods for operations on user in database
  * created on August 31, 2018
  */
-public class MySqlUserDao {
-	private Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
+public class MySQLUserDao {
 	
 	/**
 	 * method to add user details to database
@@ -23,6 +22,7 @@ public class MySqlUserDao {
 	 */
 	public status registerUser(User user) {
 		String queryToRegisterUser = MySQLUserDaoQueries.queryToAddUser;
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(queryToRegisterUser);
 			preparedStatement.setString(1, user.getEmail());
@@ -52,6 +52,7 @@ public class MySqlUserDao {
 	 * @return password of user
 	 */
 	public String getPasswordOfUser(String email) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
 		String queryToGetUserPassword = MySQLUserDaoQueries.queryToGetUserPassword;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(queryToGetUserPassword);
@@ -60,9 +61,43 @@ public class MySqlUserDao {
 			if(resultSet.next()) {
 				return resultSet.getString("password");
 			}
+			connection.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 *method to get user information using email
+	 *@param email of the user
+	 *@return user object containing information
+	 */
+	public User getUserDetailsByEmail(String email) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
+		String queryToGetUserDetailsByEmail = MySQLUserDaoQueries.queryToGetUserDetailsByEmail;
+		User user = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(queryToGetUserDetailsByEmail);
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				user = new User(
+							resultSet.getString("firstname"),
+							resultSet.getString("lastname"),
+							resultSet.getInt("age"),
+							resultSet.getDate("birthday"),
+							resultSet.getString("contact"),
+							resultSet.getString("email"),
+							resultSet.getString("password"),
+							resultSet.getString("organization"),
+							resultSet.getString("image")
+						);
+			}
+			connection.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 }

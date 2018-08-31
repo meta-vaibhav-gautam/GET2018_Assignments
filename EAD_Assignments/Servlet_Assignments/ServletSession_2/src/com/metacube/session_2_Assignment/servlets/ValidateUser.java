@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.metacube.session_2_Assignment.facade.UserFacade;
 import com.metacube.session_2_Assignment.validator.LoginValidation;
@@ -26,6 +27,8 @@ public class ValidateUser extends HttpServlet {
 		String userPassword = userFacade.getUserPassword(email);
 		
 		if(new LoginValidation().validateLoginPassword(password, userPassword)) {
+			HttpSession session=request.getSession();
+			session.setAttribute("email", email);
 			response.sendRedirect("Profile.jsp");
 		} else {
 			out.println("<html>");

@@ -1,0 +1,78 @@
+header {
+	padding: 10px;
+	background:#3BB0D3;
+	height:50px;
+	
+}
+
+.title .image{
+	float:left
+}
+
+.link h2 a{
+	display: block;
+	background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+.title .link a {
+	margin-top:10px;
+	margin-right: 5px;
+	float:right;
+	background: black;
+	padding:10px;
+	border-radius:5px;
+	font-size:18px;
+	color:white;
+}
+
+.subNavigation {
+	float: right;
+	display:  block;
+	margin-top: 12px;
+	margin-bottom:  12px;
+	margin-right:  10px;
+}
+
+.errorMessage {
+	color:red;
+    text-align: center;
+}
+
+.errorMessage a{
+	color:black;
+    text-align: center;
+    text-decoration: none;
+    background: #3BB0D3;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+#subLink {
+	margin-top:100px;
+	text-decoration:none;
+	color:black;
+	font-size:20px;
+	padding: 12px;
+	background: #3BB0D3;
+	border-radius: 15px;
+	font-family: 'Courier New', Courier, monospace;
+	border-bottom: 3px solid black;
+}
+
+#row {
+	margin:40px;
+}
+
+button {
+	padding:4px 5px;
+	background:"yellow";
+}
+
+#errorMessage {
+	color:red;
+	visibility:hidden;
+}

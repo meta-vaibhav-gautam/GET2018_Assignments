@@ -13,35 +13,38 @@ import com.DAO.Employee;
 import com.DAO.EmployeeOperation;
 
 /**
- * Servlet implementation class AddEmployeeDetails
+ * Servlet implementation class UpdateEmployeeDetails
+ * created on August 30, 2018
  */
-public class AddEmployeeDetails extends HttpServlet {
-	
-	/**
-	 * method to add employee details to database
-	 * @throws IOException 
-	 */
+public class UpdateEmployeeDetails extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
+		
 		String email = request.getParameter("email");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String name = fname+" "+lname;
 		int age = Integer.parseInt(request.getParameter("age"));
-		Employee employee = new Employee(email, (firstName+" "+lastName),age);
+		
 		PrintWriter out = response.getWriter();
 		EmployeeOperation employeeOperation=new EmployeeOperation();
-		if(employeeOperation.addEmployeeDetails(employee)) {
+		boolean result=employeeOperation.updateEmployeeDetails(new Employee(email, name, age));
+		if(result) {
 			 out.println("<html>");
-			 out.println("<h2 style=\"color:green;text-align:center;\">Employee Successfully Added !</h2>");
+			 out.println("<h2 style=\"color:green;text-align:center;\">Information Updated !</h2>");
 			 out.println("</html>");
 			 
-			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
+			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("ShowAllEmployees");
 			 requestDispatcher.include(request, response);
 		} else {
 			 out.println("<html>");
-			 out.println("<h2 style=\"color:red;text-align:center;\">Employee already present !</h2>");
+			 out.println("<h2 style=\"color:red;text-align:center;\">Information not updated !</h2>");
 			 out.println("</html>");
-			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("Register.html");
+			 
+			 RequestDispatcher requestDispatcher=request.getRequestDispatcher("ShowAllEmployees");
 			 requestDispatcher.include(request, response);
 		}
+		
 	}
 }

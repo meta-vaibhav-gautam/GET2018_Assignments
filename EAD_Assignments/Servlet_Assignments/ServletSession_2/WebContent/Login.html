@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<title>
-		Register	
+		Login	
 	</title>
 	<head>
 		<link rel="Stylesheet" href="css/style.css">
@@ -11,6 +11,10 @@
 		<div  class="title">
 			<span class="image">
 				<a href="index.html"><img src="images/MetaCube-Logo.jpg" width=150px/></a>
+			</span>
+			<span class="link">
+				<a href="Register.html">Sign Up</a>
+				<a href="index.html">Home</a>
 			</span>
 		</div>
 	</header>
@@ -30,27 +34,19 @@
 		<hr/>
 		
 		<div align="center">
-			<h2>Add Employee Details</h2>
-			<form action="AddEmployeeDetails" id="registrationForm">
+			<h2>Login</h2>
+			<form action="ValidateUser" id="registrationForm">
 				<table>
-					<tr>
-						<td>First Name</td>
-						<td><input type="text" name="firstName" id="firstName" required></td>
-					</tr>
-					<tr id="row">
-						<td>Last Name</td>
-						<td><input type="text" name="lastName" id="lastName" required></td>
-					</tr>
 					<tr>
 						<td>Email</td>
 						<td><input type="email" name="email" id="email" required></td>
 					</tr>
 					<tr>
-						<td>Age</td>
-						<td><input type="text" name="age" id="age" required></td>
+						<td>Password</td>
+						<td><input type="password" name="password" id="password" required></td>
 					</tr>
 					</table>
-					<Button onclick="validate()">Register</Button>
+					<input type="submit" value="Login">
 			</form>
 		</div>
 		<hr/>

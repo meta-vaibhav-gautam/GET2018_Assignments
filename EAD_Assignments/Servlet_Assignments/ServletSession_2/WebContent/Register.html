@@ -12,6 +12,10 @@
 			<span class="image">
 				<a href="index.html"><img src="images/MetaCube-Logo.jpg" width=150px/></a>
 			</span>
+			<span class="link">
+				<a href="Login.html">Log in</a>
+				<a href="index.html">Home</a>
+			</span>
 		</div>
 	</header>
 	<body>	
@@ -30,27 +34,56 @@
 		<hr/>
 		
 		<div align="center">
-			<h2>Add Employee Details</h2>
-			<form action="AddEmployeeDetails" id="registrationForm">
+			<h2>Create Account</h2>
+			<form action="RegisterUser" id="registrationForm">
 				<table>
 					<tr>
 						<td>First Name</td>
 						<td><input type="text" name="firstName" id="firstName" required></td>
 					</tr>
-					<tr id="row">
+					<tr>
 						<td>Last Name</td>
 						<td><input type="text" name="lastName" id="lastName" required></td>
+					</tr>
+					<tr>
+						<td>Age</td>
+						<td><input type="text" name="age" id="age" required></td>
+					</tr>
+					<tr>
+						<td>Date Of Birth</td>
+						<td><input type="date" name="birthday" id="birthday" required></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="text" name="contact" id="contact" required></td>
 					</tr>
 					<tr>
 						<td>Email</td>
 						<td><input type="email" name="email" id="email" required></td>
 					</tr>
 					<tr>
-						<td>Age</td>
-						<td><input type="text" name="age" id="age" required></td>
+						<td>Password</td>
+						<td><input type="password" name="password" id="password" required></td>
+					</tr>
+					<tr>
+						<td>Confirm Password</td>
+						<td><input type="password" name="confirmPassword" id="confirmPassword" required></td>
+					</tr>
+					<tr>
+						<td>Organization</td>
+						<td>
+							<select name="organization">
+								<option value="select">Select</option>
+								<option value="Metacube">Metacube</option>
+								<option value="Google">Google</option>
+								<option value="Amazon">Amazon</option>
+								<option value="Facebook">Facebook</option>
+								<option value="Apple">Apple</option>
+							</select>
+						</td>
 					</tr>
 					</table>
-					<Button onclick="validate()">Register</Button>
+					<input type="submit" value="Create Account">
 			</form>
 		</div>
 		<hr/>

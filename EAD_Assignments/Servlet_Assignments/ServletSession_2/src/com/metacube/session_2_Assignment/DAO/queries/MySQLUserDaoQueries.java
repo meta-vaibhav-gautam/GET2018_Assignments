@@ -12,4 +12,12 @@ public class MySQLUserDaoQueries {
 	
 	public static final String queryToGetUserDetailsByEmail = "SELECT email,firstname,lastname,age,birthday,"
 			+ "contact,password,organization,image FROM user WHERE email = ?";
+	
+	public static final String queryToUpdateProfilePicture = "UPDATE user SET image=? WHERE email=?";
+	
+	public static final String queryToGetFriendList = "SELECT email,firstname,lastname,age,birthday,"
+			+ "contact,password,organization,image FROM user WHERE organization = ? AND email <> ?";
+	
+	public static final String queryToUpdateUserDetails = "UPDATE user SET firstname=?,lastname=?,age=?,birthday=?,"
+			+ "contact=?,organization=? WHERE email=?";
 }

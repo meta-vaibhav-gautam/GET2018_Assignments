@@ -9,7 +9,6 @@
     <servlet-name>registerUser</servlet-name>
     <url-pattern>/RegisterUser</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>validateUser</display-name>
     <servlet-name>validateUser</servlet-name>
@@ -19,6 +18,45 @@
     <servlet-name>validateUser</servlet-name>
     <url-pattern>/ValidateUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>updateProfilePicture</display-name>
+    <servlet-name>updateProfilePicture</servlet-name>
+    <servlet-class>com.metacube.session_2_Assignment.servlets.UpdateProfilePicture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateProfilePicture</servlet-name>
+    <url-pattern>/UpdateProfilePicture</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>updateUserDetails</display-name>
+    <servlet-name>updateUserDetails</servlet-name>
+    <servlet-class>com.metacube.session_2_Assignment.servlets.UpdateUserDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateUserDetails</servlet-name>
+    <url-pattern>/UpdateUserDetails</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <display-name>invalidateSession</display-name>
+    <servlet-name>invalidateSession</servlet-name>
+    <servlet-class>com.metacube.session_2_Assignment.servlets.InvalidateSession</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>invalidateSession</servlet-name>
+    <url-pattern>/InvalidateSession</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+		<filter-name>sessionValidatorFilter</filter-name>
+		<filter-class>com.metacube.session_2_Assignment.filter.SessionValidatorFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sessionValidatorFilter</filter-name>
+		<url-pattern>/UpdateUserDetails</url-pattern>
+		<url-pattern>/UpdateProfilePicture</url-pattern>
+		<url-pattern>/UserFriends.jsp</url-pattern>
+		<url-pattern>/FriendProfile.jsp</url-pattern>
+	</filter-mapping> 
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

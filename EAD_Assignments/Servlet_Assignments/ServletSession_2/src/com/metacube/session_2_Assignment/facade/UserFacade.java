@@ -1,5 +1,7 @@
 package com.metacube.session_2_Assignment.facade;
 
+import java.util.List;
+
 import com.metacube.session_2_Assignment.DAO.MySQLUserDao;
 import com.metacube.session_2_Assignment.enums.status;
 import com.metacube.session_2_Assignment.model.User;
@@ -27,5 +29,17 @@ public class UserFacade {
 	
 	public User getUserDetailsByEmail(String email) {
 		return mySqlUserDao.getUserDetailsByEmail(email);
+	}
+	
+	public boolean updateProfilePicture(String email,String image) {
+		return mySqlUserDao.updateProfilePicture(email,image);
+	}
+	
+	public List<User> getFriendListOfUser(String email, String organization) {
+		return mySqlUserDao.getFriendListOfUser(email, organization);
+	}
+	
+	public boolean updateUserDetails(User user) {
+		return mySqlUserDao.updateUserDetails(user);
 	}
 }

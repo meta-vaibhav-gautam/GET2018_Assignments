@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.metacube.session_2_Assignment.DAO.queries.MySQLUserDaoQueries;
 import com.metacube.session_2_Assignment.enums.status;
@@ -99,5 +101,97 @@ public class MySQLUserDao {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	/**
+	 * method to update profile picture
+	 * @param email and image uploaded by user
+	 * @return true if image is updated successfully
+	 */
+	public boolean updateProfilePicture(String email,String image) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
+		String queryToUpdateProfilePicture = MySQLUserDaoQueries.queryToUpdateProfilePicture;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(queryToUpdateProfilePicture);
+			preparedStatement.setString(1,image);
+			preparedStatement.setString(2, email);
+			
+			int result = preparedStatement.executeUpdate();
+			if(result>0) {
+				return true;
+			}
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 *method to get userList of particular organization
+	 *@param email and organization of the user 
+	 *@return user list containing information
+	 */
+	public List<User> getFriendListOfUser(String email, String organization) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
+		String queryToGetUserDetailsByEmail = MySQLUserDaoQueries.queryToGetFriendList;
+		List<User> friendList = new ArrayList<User>();
+		User user = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(queryToGetUserDetailsByEmail);
+			preparedStatement.setString(1, organization);
+			preparedStatement.setString(2, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				do {
+					user = new User(
+							resultSet.getString("firstname"),
+							resultSet.getString("lastname"),
+							resultSet.getInt("age"),
+							resultSet.getDate("birthday"),
+							resultSet.getString("contact"),
+							resultSet.getString("email"),
+							resultSet.getString("password"),
+							resultSet.getString("organization"),
+							resultSet.getString("image")
+					);
+					friendList.add(user);
+				} while (resultSet.next());
+				return friendList;
+			}
+			connection.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return friendList;
+	}
+	
+	/**
+	 * method to update user profile data
+	 * @param user object 
+	 * @return true if profile data is updated successfully
+	 */
+	public boolean updateUserDetails(User user) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaServletSession2");
+		String queryToUpdateUserDetails = MySQLUserDaoQueries.queryToUpdateUserDetails;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(queryToUpdateUserDetails);
+			preparedStatement.setString(1, user.getFirstName());
+			preparedStatement.setString(2, user.getLastName());
+			preparedStatement.setInt(3, user.getAge());
+			preparedStatement.setDate(4, user.getBirthday());
+			preparedStatement.setString(5, user.getContact());
+			preparedStatement.setString(6, user.getOrganization());
+			preparedStatement.setString(7, user.getEmail());
+			
+			int result = preparedStatement.executeUpdate();
+			if(result>0) {
+				return true;
+			}
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

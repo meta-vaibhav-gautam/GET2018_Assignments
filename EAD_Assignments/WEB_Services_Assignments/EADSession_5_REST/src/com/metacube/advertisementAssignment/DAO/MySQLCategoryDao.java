@@ -61,6 +61,29 @@ public class MySQLCategoryDao {
 	}
 	
 	/**
+	 * method to update category name
+	 * @param name of category and id of category
+	 * @return true if updated successfully
+	 */
+	public boolean updateCategory(String name, int id) {
+		Connection connection = MySQLConnection.getDatabaseConnection("metaRestfulSessionDB");
+		String queryToUpdateCategory = MySQLCategoryDaoQueries.queryToUpdateCategory;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(queryToUpdateCategory);
+			preparedStatement.setString(1,name);
+			preparedStatement.setInt(2, id);
+			
+			int result = preparedStatement.executeUpdate();
+			if(result>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
 	 * method to get all categories
 	 * @return list of category
 	 */

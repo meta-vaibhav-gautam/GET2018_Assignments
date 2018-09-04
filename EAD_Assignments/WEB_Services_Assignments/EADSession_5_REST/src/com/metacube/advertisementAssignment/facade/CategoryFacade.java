@@ -22,6 +22,10 @@ public class CategoryFacade {
 		return mySqlCategoryDao.addCategory(categoryName);
 	}
 	
+	public boolean updateCategory(String name, int id) {
+		return mySqlCategoryDao.updateCategory(name,id);
+	}
+	
 	public List<Category> getAllCategories() {
 		return mySqlCategoryDao.getAllCategories();
 	}

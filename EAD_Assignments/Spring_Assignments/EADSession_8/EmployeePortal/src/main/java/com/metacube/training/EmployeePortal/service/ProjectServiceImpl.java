@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metacube.training.dao.ProjectDAO;
-import com.metacube.training.model.Project;
+import com.metacube.training.EmployeePortal.dao.ProjectDAO;
+import com.metacube.training.EmployeePortal.model.Project;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -16,7 +16,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	
 	@Override
-	public Project getProjectById(Long id) {
+	public Project getProjectById(int id) {
 		
 		return projectDAO.getProjectById(id);
 	}
@@ -27,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public boolean deleteProject(Long id) {
+	public boolean deleteProject(int id) {
 		Project project = projectDAO.getProjectById(id);
 		return projectDAO.deleteProject(project);
 	}

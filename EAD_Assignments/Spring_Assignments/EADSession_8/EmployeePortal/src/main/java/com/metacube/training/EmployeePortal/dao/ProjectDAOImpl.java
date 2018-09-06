@@ -21,11 +21,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	private final String SQL_FIND_PROJECT = "select * from project where id = ?";
-	private final String SQL_DELETE_PROJECT = "delete from project where id = ?";
-	private final String SQL_UPDATE_PROJECT = "update project set name = ?, description = ?, start_date  = ?, end_date  = ? where id = ?";
+	private final String SQL_FIND_PROJECT = "select * from project where project_id = ?";
+	private final String SQL_DELETE_PROJECT = "delete from project where project_id = ?";
+	private final String SQL_UPDATE_PROJECT = "update project set description = ?, start_date  = ?, end_date  = ? where project_id = ?";
 	private final String SQL_GET_ALL = "select * from project";
-	private final String SQL_INSERT_PROJECT = "insert into project(name, description, start_date, end_date) values(?,?,?,?)";
+	private final String SQL_INSERT_PROJECT = "insert into project(description, start_date, end_date) values(?,?,?)";
 
 	public Project getProjectById(int id) {
 		return new MySQLProjectDao().getProjectById(id);

@@ -11,7 +11,7 @@ import com.metacube.training.EmployeePortal.model.Project;
 public class MySQLProjectDao {
 	public Project getProjectById(int id) {
 		Connection connection = MySQLConnection.getDatabaseConnection("employee_portal");
-		String queryTogetProject = "SELECT * FROM Project_master where project_id=?";
+		String queryTogetProject = "SELECT * FROM Project where project_id=?";
 		Project project = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(queryTogetProject);

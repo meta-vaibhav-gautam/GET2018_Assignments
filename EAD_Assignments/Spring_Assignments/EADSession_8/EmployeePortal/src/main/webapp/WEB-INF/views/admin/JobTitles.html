@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Job Titles</title>
+</head>
+<body>
+	<div align="center">
+		<div align="center">
+			<form th:object="${jobTitleMaster}" th:action="@{../JobTitles}" method="post">
+				<label>Job title</label>
+				<input type="text" th:field="*{job_title}" required="required">
+				<input type="submit">
+			</form>
+		</div>
+		<hr/>
+		<div th:if="${not #lists.isEmpty(jobTitleMaster)}">
+			<table>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+				</tr>
+				<tr th:each = "jobTitle : ${jobTitleMaster}">
+					<td th:text="${jobTitle.jobId}">Id</td>
+					<td th:text="${jobTitle.jobTitle}">title</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div align="center">
+		<a th:href="@{../admin/JobTitle/add}">Add new Job Title </a><br/>
+	</div>
+</body>
+</html>

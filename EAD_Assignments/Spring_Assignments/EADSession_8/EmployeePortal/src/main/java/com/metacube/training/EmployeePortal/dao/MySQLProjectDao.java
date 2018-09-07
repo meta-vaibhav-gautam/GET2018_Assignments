@@ -18,7 +18,7 @@ public class MySQLProjectDao {
 			preparedStatement.setInt(1,id);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			ProjectMapper projectMapper = new ProjectMapper();
-			project = projectMapper.mapRow(resultSet,resultSet.getRow());
+			project = projectMapper.mapRow(resultSet,0);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

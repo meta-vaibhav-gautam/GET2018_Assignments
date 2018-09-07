@@ -25,10 +25,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 	private final String SQL_DELETE_PROJECT = "delete from project where project_id = ?";
 	private final String SQL_UPDATE_PROJECT = "update project set description = ?, start_date  = ?, end_date  = ? where project_id = ?";
 	private final String SQL_GET_ALL = "select * from project";
-	private final String SQL_INSERT_PROJECT = "insert into project(description, start_date, end_date) values(?,?,?)";
+	private final String SQL_INSERT_PROJECT = "insert into project(description, start_date, end_date,project_logo) values(?,?,?,?)";
 
 	public Project getProjectById(int id) {
-		return new MySQLProjectDao().getProjectById(id);
+		return jdbcTemplate.queryForObject(SQL_FIND_PROJECT, new Object[] {id}, new ProjectMapper());
 	}
 
 	public List<Project> getAllProjects() {
@@ -41,12 +41,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	public boolean updateProject(Project project) {
 		return jdbcTemplate.update(SQL_UPDATE_PROJECT,project.getDescription(), project.getStartDate(),
-				project.getEndDate()) > 0;
+				project.getEndDate(),project.getProjectId()) > 0;
 	}
 
 	public boolean createProject(Project project) {
 		return jdbcTemplate.update(SQL_INSERT_PROJECT, project.getDescription(), project.getStartDate(),
-				project.getEndDate()) > 0;
+				project.getEndDate(),project.getProjectLogo()) > 0;
 	}
 
 }

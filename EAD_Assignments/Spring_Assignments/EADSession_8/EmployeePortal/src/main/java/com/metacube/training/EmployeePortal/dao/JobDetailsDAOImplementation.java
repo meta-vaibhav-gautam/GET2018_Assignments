@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -68,7 +69,15 @@ public class JobDetailsDAOImplementation implements JobDetailsDAO {
 	
 	@Override
 	public JobDetails getJobDetailsOfEmployee(String employeeCode) {
-		return jdbcTemplate.queryForObject(SQL_FIND_JobDetailsOfEmployee, new Object[] {employeeCode}, new JobDetailsMapper());
+		JobDetails jobDetails = null;
+		try {
+			jobDetails = jdbcTemplate.queryForObject(SQL_FIND_JobDetailsOfEmployee, new Object[] {employeeCode}, new JobDetailsMapper());
+		} catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			jobDetails = new JobDetails();
+			jobDetails.setEmployeeCode(employeeCode);
+		}
+		return jobDetails;
 	}
 
 }

@@ -18,7 +18,7 @@ public class Employee {
 	private String skypeId;
 	private String profilePicture;
 	private String password;
-	private boolean enabled;
+	private boolean enabled=true;
 	
 	public String getEmployeeCode() {
 		return employeeCode;

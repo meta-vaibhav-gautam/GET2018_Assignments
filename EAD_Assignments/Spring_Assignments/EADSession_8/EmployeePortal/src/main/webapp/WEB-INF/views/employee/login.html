@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>employee login</title>
 </head>
 <body>
 	<div align="center">
-		<form action="">
+		<h2>Employee Login</h2>
+		<form th:action="@{login}" method="post">
 			username : <input type="text" name="username"><br>
 			password : <input type="password" name="password"><br>
 			<input type="submit" value="login">

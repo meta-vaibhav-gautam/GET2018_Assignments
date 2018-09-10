@@ -9,7 +9,7 @@ import com.metacube.training.EmployeePortal.model.Employee;
  * created on September 08, 2018
  */
 public interface EmployeeService {
-	Employee getEmployeeById(int id);
+	Employee getEmployeeById(String employeeCode);
 
 	List<Employee> getAllEmployee();
 

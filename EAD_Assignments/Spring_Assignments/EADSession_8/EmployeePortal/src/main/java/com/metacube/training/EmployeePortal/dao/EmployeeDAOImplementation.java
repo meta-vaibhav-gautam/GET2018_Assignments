@@ -42,8 +42,8 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	private final String SQL_LATEST_EMPLOYEE_CODE = "SELECT * FROM employee ORDER BY emp_code DESC LIMIT 1";
 	
 	@Override
-	public Employee getEmployeeById(int id) {
-		return jdbcTemplate.queryForObject(SQL_FIND_EMPLOYEE, new Object[] {id},new EmployeeMapper());
+	public Employee getEmployeeById(String employeeCode) {
+		return jdbcTemplate.queryForObject(SQL_FIND_EMPLOYEE, new Object[] {employeeCode},new EmployeeMapper());
 	}
 
 	@Override

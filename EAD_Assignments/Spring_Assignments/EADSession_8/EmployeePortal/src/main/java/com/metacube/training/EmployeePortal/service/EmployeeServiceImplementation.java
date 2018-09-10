@@ -19,8 +19,8 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	EmployeeDAO employeeDAO;
 	
 	@Override
-	public Employee getEmployeeById(int id) {
-		return employeeDAO.getEmployeeById(id);
+	public Employee getEmployeeById(String employeeCode) {
+		return employeeDAO.getEmployeeById(employeeCode);
 	}
 
 	@Override

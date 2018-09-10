@@ -49,8 +49,11 @@ public class AdminController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(name = "username") String username,
 			@RequestParam(name = "password") String password) {
-
-		return new ModelAndView("admin/dashboard", "username", username);
+		if("admin".equals(username) && "password".equals(password)) {
+			return new ModelAndView("admin/dashboard", "username", username);
+		} else {
+			return new ModelAndView("admin/login");
+		}
 	}
 
 	@RequestMapping(path = "/projects/add", method = RequestMethod.GET)
@@ -173,12 +176,23 @@ public class AdminController {
 	
 	@RequestMapping(path = "/updateJobDetails", method = RequestMethod.POST)
 	public String saveproject(@ModelAttribute("jobDetails") JobDetails jobDetails) {
-		if(jobDetails!= null && jobDetails.getJobDetailId() == 0) {
+		if(jobDetails.getJobCode() == 0) {
 			jobDetailsService.createJobDetails(jobDetails);	
 		}else {
 			jobDetailsService.updateJobDetails(jobDetails);
 		}
 		return "redirect:/admin/allEmployee";
+	}
+	
+	@RequestMapping(path = "/search", method = RequestMethod.GET)
+	public String searchEmployee(Model model) {
+	return "admin/search";
+	}
+
+	@RequestMapping(path = "/search", method = RequestMethod.POST)
+	public String search(@RequestParam(name = "search") String username,  Model model) {
+	model.addAttribute("employee",employeeService.getEmployeeById(username));
+	return "admin/search";
 	}
 	
 }

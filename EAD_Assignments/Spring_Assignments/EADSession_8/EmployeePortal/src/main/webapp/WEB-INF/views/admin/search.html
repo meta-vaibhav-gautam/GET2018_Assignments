@@ -1,12 +1,18 @@
-<!DOCTYPE>
-<html  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Employee Dashboard</title>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>projects</title>
+
 </head>
 <body>
-	<div align="center">
-		<h2>Welcome</h2>
+	<div class="container">
+		<h2>Search Employee</h2>
+		<form th:action="@{../admin/search}" method=post>
+			<label>Employee Id: </label>
+			<input th:type="text" name=search required="required"> <br/> 
+			<input type="submit" value="Search">
+		</form>
+		<hr/>
 		<div class="container">
 			<div th:if="${not #lists.isEmpty(employee)}">
 				 <table class="table table-striped">
@@ -20,6 +26,8 @@
 		                <th>Secondary Contact</th>
 		                <th>Email Id</th>
 		                <th>Skype Id</th>
+		                <th>Update Job Details</th>
+		                <th>Delete</th>
 		            </tr>
 		            <tr th:each="employee : ${employee}">
 		                <td th:text="${employee.employeeCode}">Emp Id</td>
@@ -31,13 +39,11 @@
 		                <td th:text="${employee.secondaryContactNumber}">Primary Contact</td>
 		                <td th:text="${employee.emailId}">Email Id</td>
 		                <td th:text="${employee.skypeId}">Skype Id</td>
+		                <td><a th:href="@{'../admin/updateJobDetails?employeeCode=' +${employee.employeeCode}}">Update</a></td>
 		            </tr>
         		</table>
 			</div>
 		</div>
-	</div>
-	<div>
-		<a th:href="@{./logout}">Log Out</a>
 	</div>
 </body>
 </html>

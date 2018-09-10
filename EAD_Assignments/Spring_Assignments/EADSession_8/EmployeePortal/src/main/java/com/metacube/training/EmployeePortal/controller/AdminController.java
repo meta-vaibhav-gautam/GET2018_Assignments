@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metacube.training.EmployeePortal.model.Employee;
+import com.metacube.training.EmployeePortal.model.JobDetails;
 import com.metacube.training.EmployeePortal.model.JobTitleMaster;
 import com.metacube.training.EmployeePortal.model.Project;
 import com.metacube.training.EmployeePortal.model.SkillMaster;
+import com.metacube.training.EmployeePortal.service.EmployeeService;
+import com.metacube.training.EmployeePortal.service.JobDetailsService;
 import com.metacube.training.EmployeePortal.service.JobTitleMasterService;
 import com.metacube.training.EmployeePortal.service.ProjectService;
 import com.metacube.training.EmployeePortal.service.SkillMasterService;
@@ -30,6 +34,12 @@ public class AdminController {
 	
 	@Autowired
 	private JobTitleMasterService jobTitleMasterService;
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@Autowired
+	private JobDetailsService jobDetailsService;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -111,22 +121,64 @@ public class AdminController {
 		return "redirect:/admin/skills";
 	}
 
-	@RequestMapping(path = "/Jobtitles/add", method = RequestMethod.GET)
-	public String createJobTitleMaster(Model model) {
-		model.addAttribute("jobTitleMaster", new JobTitleMaster());
-		return "admin/JobTitles";
-	}
-	
-	@RequestMapping(path = "/JobTitles/edit", method = RequestMethod.GET)
-	public String editJobTitleMaster(Model model, @RequestParam("job_code") int job_code) {
-		model.addAttribute("jobTitleMaster", jobTitleMasterService.getJobTitleMaterById(job_code));
-		return "admin/JobTitles";
-	}
-	
-	@RequestMapping(path = "/Jobtitles", method = RequestMethod.POST)
-	public String saveJobTitleMaster(@ModelAttribute("jobTitleMaster") JobTitleMaster jobTitleMaster) {
+	@RequestMapping(path = "/JobTitles/add", method = RequestMethod.POST)
+	public String createJobTitleMaster(@RequestParam("jobTitle") String jobTitle) {
+		JobTitleMaster jobTitleMaster = new JobTitleMaster();
+		jobTitleMaster.setJobTitle(jobTitle);
 		jobTitleMasterService.createJobTitleMaster(jobTitleMaster);
 		return "redirect:/admin/JobTitles";
+	}
+	
+	@RequestMapping(path = "/JobTitles" , method = RequestMethod.GET)
+	public String getAllJobTitleMaster(Model model) {
+		model.addAttribute("jobTitleMaster",jobTitleMasterService.getAllJobTitleMaster());
+		return "admin/JobTitles";
+	}
+	
+	@RequestMapping(path="/allEmployee", method = RequestMethod.GET)
+	public String getAllEmployee(Model model) {
+		model.addAttribute("employee",employeeService.getAllEmployee());
+		return "admin/employee";
+	}
+	
+	@RequestMapping(path="/employee/add", method = RequestMethod.GET)
+	public String addEmployee(Model model) {
+		model.addAttribute("employee",new Employee());
+		return "admin/registerEmployee";
+	}
+	
+	@RequestMapping(path="/employee", method=RequestMethod.POST)
+	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+		if(employee!=null && employee.getEmployeeCode()==null) {
+			employeeService.createEmployee(employee);
+		} else {
+			employeeService.updateEmployee(employee);
+		}
+		return "redirect:/admin/allEmployee";
+	}
+	
+	@RequestMapping(path="/createJobDetails", method = RequestMethod.GET)
+	public String createJobDetails(Model model,@RequestParam("employeeCode") String employeeCode) {
+		JobDetails jobDetails = new JobDetails();
+		jobDetails.setEmployeeCode(employeeCode);
+		model.addAttribute("jobDetails",jobDetails);
+		return "admin/jobDetails";
+	}
+	
+	@RequestMapping(path="/updateJobDetails", method = RequestMethod.GET)
+	public String updateJobDetails(Model model,@RequestParam("employeeCode") String employeeCode) {
+		model.addAttribute("jobDetails", jobDetailsService.getJobDetailsOfEmployee(employeeCode));
+		return "admin/jobDetails";
+	}
+	
+	@RequestMapping(path = "/updateJobDetails", method = RequestMethod.POST)
+	public String saveproject(@ModelAttribute("jobDetails") JobDetails jobDetails) {
+		if(jobDetails!= null && jobDetails.getJobDetailId() == 0) {
+			jobDetailsService.createJobDetails(jobDetails);	
+		}else {
+			jobDetailsService.updateJobDetails(jobDetails);
+		}
+		return "redirect:/admin/allEmployee";
 	}
 	
 }

@@ -7,10 +7,10 @@
 <body>
 	<div align="center">
 		<div align="center">
-			<form th:object="${jobTitleMaster}" th:action="@{../JobTitles}" method="post">
+			<form th:action="@{JobTitles/add}" method="post">
 				<label>Job title</label>
-				<input type="text" th:field="*{job_title}" required="required">
-				<input type="submit">
+				<input type="text" name="jobTitle" required="required"> <br/>
+				<input type="submit" value="Add new Job Title">
 			</form>
 		</div>
 		<hr/>
@@ -21,14 +21,11 @@
 					<th>Title</th>
 				</tr>
 				<tr th:each = "jobTitle : ${jobTitleMaster}">
-					<td th:text="${jobTitle.jobId}">Id</td>
+					<td th:text="${jobTitle.jobCode}">Id</td>
 					<td th:text="${jobTitle.jobTitle}">title</td>
 				</tr>
 			</table>
 		</div>
-	</div>
-	<div align="center">
-		<a th:href="@{../admin/JobTitle/add}">Add new Job Title </a><br/>
 	</div>
 </body>
 </html>

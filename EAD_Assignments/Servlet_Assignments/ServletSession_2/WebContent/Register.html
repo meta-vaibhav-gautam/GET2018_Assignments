@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<title>
+		Register	
+	</title>
+	<head>
+		<link rel="Stylesheet" href="css/style.css">
+	</head>
+	<header>
+		<div  class="title">
+			<span class="image">
+				<a href="index.html"><img src="images/MetaCube-Logo.jpg" width=150px/></a>
+			</span>
+			<span class="link">
+				<a href="Login.html">Log in</a>
+				<a href="index.html">Home</a>
+			</span>
+		</div>
+	</header>
+	<body>	
+		<div align="right">
+			<table>
+				<tr>
+					<td align="right" style="display:  block;margin-top: 12px;margin-bottom:  12px;margin-right:  10px;">
+						<a href="#" id="subLink">About</a>
+						<a href="#" id="subLink">Products</a>
+						<a href="#" id="subLink">Gallery</a>
+						<a href="#" id="subLink">Contact</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<hr/>
+		
+		<div align="center">
+			<h2>Create Account</h2>
+			<form action="RegisterUser" id="registrationForm">
+				<table>
+					<tr>
+						<td>First Name</td>
+						<td><input type="text" name="firstName" id="firstName" required></td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td><input type="text" name="lastName" id="lastName" required></td>
+					</tr>
+					<tr>
+						<td>Age</td>
+						<td><input type="text" name="age" id="age" required></td>
+					</tr>
+					<tr>
+						<td>Date Of Birth</td>
+						<td><input type="date" name="birthday" id="birthday" required></td>
+					</tr>
+					<tr>
+						<td>Mobile</td>
+						<td><input type="text" name="contact" id="contact" required></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><input type="email" name="email" id="email" required></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" name="password" id="password" required></td>
+					</tr>
+					<tr>
+						<td>Confirm Password</td>
+						<td><input type="password" name="confirmPassword" id="confirmPassword" required></td>
+					</tr>
+					<tr>
+						<td>Organization</td>
+						<td>
+							<select name="organization">
+								<option value="select">Select</option>
+								<option value="Metacube">Metacube</option>
+								<option value="Google">Google</option>
+								<option value="Amazon">Amazon</option>
+								<option value="Facebook">Facebook</option>
+								<option value="Apple">Apple</option>
+							</select>
+						</td>
+					</tr>
+					</table>
+					<input type="submit" value="Create Account">
+			</form>
+		</div>
+		<hr/>
+		<div align="center">
+			&copy; Copyright 2018-19 | All Rights reserved. | Metacube Training
+		</div>
+	</body>
+</html>

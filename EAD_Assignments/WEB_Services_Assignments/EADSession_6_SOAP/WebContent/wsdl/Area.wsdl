@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://EAD_Session.metacube.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://EAD_Session.metacube.com" xmlns:intf="http://EAD_Session.metacube.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://EAD_Session.metacube.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getTriangleArea">
+    <complexType>
+     <sequence>
+      <element name="side1" type="xsd:int"/>
+      <element name="side2" type="xsd:int"/>
+      <element name="side3" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTriangleAreaResponse">
+    <complexType>
+     <sequence>
+      <element name="getTriangleAreaReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getTriangleAreaResponse">
+
+      <wsdl:part element="impl:getTriangleAreaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTriangleAreaRequest">
+
+      <wsdl:part element="impl:getTriangleArea" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Area">
+
+      <wsdl:operation name="getTriangleArea">
+
+         <wsdl:input message="impl:getTriangleAreaRequest" name="getTriangleAreaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTriangleAreaResponse" name="getTriangleAreaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AreaSoapBinding" type="impl:Area">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getTriangleArea">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTriangleAreaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTriangleAreaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AreaService">
+
+      <wsdl:port binding="impl:AreaSoapBinding" name="Area">
+
+         <wsdlsoap:address location="http://localhost:8080/EADSession_6_SOAP/services/Area"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

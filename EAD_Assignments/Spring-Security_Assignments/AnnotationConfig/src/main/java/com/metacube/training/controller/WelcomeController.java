@@ -17,17 +17,16 @@ public class WelcomeController {
 
 	@RequestMapping(value = "/default", method = RequestMethod.GET)
 	public String loginSuccessfull(HttpServletRequest request) {
-		System.out.println("vaibhav");
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			return "redirect:/admin/dashboard";
 		} 
 		if (request.isUserInRole("ROLE_EMPLOYEE")) {
 			return "redirect:/employee/dashboard";
 		}
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
-	@GetMapping("/error")
+	@GetMapping("/errorPage")
 	public String errorPage() {
 		return "error";
 	}

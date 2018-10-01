@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <section id="registration-form">
+        <h1>Contact Us Today!</h1>
+        <form>
+            <div class="form-element-container">
+                <div class="element-label">First Name</div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-user-alt"></i>
+                    </span>
+                    <div>
+                        <input type="text" id="first-name" name="first-name" placeholder="First Name" minlength="2" required pattern="^[A-Za-z]+$"
+                            title="First name must contain atleast 2 character" autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Last Name
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-user-alt"></i>
+                    </span>
+                    <div>
+                        <input type="text" id="last-name" name="last-name" placeholder="Last Name" required pattern="^[A-Za-z]+$">
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Email
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="E-mail Address" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Phone #
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-phone"></i>
+                    </span>
+                    <div>
+                        <input type="number" id="phone" name="phone" maxlength="10" placeholder="(845)555-1212" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Address
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <div>
+                        <input type="text" id="address" name="address" placeholder="Address" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    City
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <div>
+                        <input type="text" id="city" name="city" placeholder="city" required pattern="^[A-Za-z]+$">
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    State
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-list-ul"></i>
+                    </span>
+                    <div>
+                        <select name="state">
+                                <option value="null">Please select your state</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Telangana">Telangana</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Zip Code
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <div>
+                        <input type="number" id="zip-code" name="zip-code" maxlength="6" placeholder="Zip Code" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Website or domain name
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i class="fas fa-globe-americas"></i>
+                    </span>
+                    <div>
+                        <input type="text" id="website" name="website" placeholder="Website or domain name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Do you have hosting ?
+                </div>
+                <div id="form-radio-button" class="form-element">
+                    <div>
+                        <label><input type="radio" id="hosting" name="hosting" value="yes">Yes</label>
+                    </div>
+                    <div>
+                        <label><input type="radio" id="hosting" name="hosting" value="no">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div class="element-label">
+                    Project Description
+                </div>
+                <div class="form-element">
+                    <span>
+                        <i id="project-description-icon" class="fas fa-pen"></i>
+                    </span>
+                    <div>
+                        <textarea rows="3" cols="30" placeholder="Project Description" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-element-container">
+                <div>
+                    <button type="submit">Send
+                        <span><i class="fab fa-telegram-plane"></i></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>

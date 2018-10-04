@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Form</title>
+    <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
@@ -11,16 +11,7 @@
 
 <body onload="getProfileData()">
     <section id="profile-details">
-        <h1><i class="fas fa-user-alt"></i> Welcome</h1>
-
-        <div class="form-element-container">
-            <div class="element-label">Name:</div>
-            <div class="form-element profile-data element-label">
-                <div id="name">
-
-                </div>
-            </div>
-        </div>
+        <h1><i class="fas fa-user-alt"></i> Welcome <span id="name"></span></h1>
         <div class="form-element-container">
             <div class="element-label">
                 Email:
@@ -65,67 +56,34 @@
             <div class="element-label">
                 State:
             </div>
-            <div class="form-element form-element element-label">
+            <div class="form-element profile-data element-label">
                 <div id="state">
 
                 </div>
             </div>
         </div>
 
-        <!--            
-            <div class="form-element-container">
-                <div class="element-label">
-                    Zip Code
-                </div>
-                <div class="form-element">
-                    <span>
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <div>
-                        <input type="number" id="zip-code" name="zip-code" maxlength="6" placeholder="Zip Code" required>
-                    </div>
+        <div class="form-element-container">
+            <div id="label-1" class="element-label">
+                
+            </div>
+            <div class="form-element profile-data element-label">
+                <div id="label-1-content">
+
                 </div>
             </div>
-            <div class="form-element-container">
-                <div class="element-label">
-                    Website or domain name
-                </div>
-                <div class="form-element">
-                    <span>
-                        <i class="fas fa-globe-americas"></i>
-                    </span>
-                    <div>
-                        <input type="text" id="website" name="website" placeholder="Website or domain name" required>
-                    </div>
+        </div>
+
+        <div class="form-element-container">
+            <div id="label-2" class="element-label">
+                
+            </div>
+            <div class="form-element profile-data element-label">
+                <div id="label-2-content">
+
                 </div>
             </div>
-            <div class="form-element-container">
-                <div class="element-label">
-                    Do you have hosting ?
-                </div>
-                <div id="form-radio-button" class="form-element">
-                    <div>
-                        <label><input type="radio" id="hosting" name="hosting" value="yes">Yes</label>
-                    </div>
-                    <div>
-                        <label><input type="radio" id="hosting" name="hosting" value="no">No</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-element-container">
-                <div class="element-label">
-                    Project Description
-                </div>
-                <div class="form-element">
-                    <span>
-                        <i id="project-description-icon" class="fas fa-pen"></i>
-                    </span>
-                    <div>
-                        <textarea rows="3" cols="30" placeholder="Project Description" required></textarea>
-                    </div>
-                </div>
-            </div>   
-            -->
+        </div>
     </section>
 </body>
 

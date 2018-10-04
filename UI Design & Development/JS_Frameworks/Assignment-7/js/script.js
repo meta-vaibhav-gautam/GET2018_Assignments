@@ -1,10 +1,7 @@
-var errorMessages = new Object();
+var errorMessages = {};
 errorMessages.id = [];
 errorMessages.msg = [];
-var idIndex = -1;
-var msgIndex = -1;
-var name,email1,phone,address,city1,state;
-
+var index = -1;
 
 function addElement() {
     var form = document.getElementById("registration-form");
@@ -89,6 +86,7 @@ function addProjectDescriptionField() {
     var descriptionField = document.createElement("textarea");
     descriptionField.setAttribute("rows", 3);
     descriptionField.setAttribute("cols", 30);
+    descriptionField.setAttribute("id", "project-description");
     descriptionField.setAttribute("name", "project-description");
     descriptionField.setAttribute("required", "required");
     descriptionField.setAttribute("placeholder", "Enter Project Description");
@@ -185,90 +183,105 @@ function validate() {
     validateName();
     validateEmail();
     validateCity();
-    // validateZipCode();
-
-    if (idIndex> -1) {
+    validateState();
+    var flag = false;
+    if (index > -1) {
         var i;
         var invalidFields = "";
-        for (i = 0; i < idIndex; i++) {
-            invalidFields += errorMessages.id[i] + " ,";
+        for (i = 0; i <= index; i++) {
+            invalidFields += errorMessages.id[i] + " : " + errorMessages.msg[i] + "\n";
         }
-        alert("Something invalid has been entered in following fields !\n" + invalidFields);
-        // console.log("invalid inputs given !");
-        idIndex = -1;
-        msgIndex = -1;
-        return false;
+        alert("Please correct the inputs given in following fields:\n\n" + invalidFields);
+        index = -1;
     }
-    return true;
+    else {
+        flag = true;
+        document.getElementById("registration-form").submit();
+    }
+    return flag;
 }
 
 function validateName() {
     var re = /^[A-Za-z]+$/;
     var firstName = document.getElementById("first-name").value;
     var lastName = document.getElementById("last-name").value;
-    if ((firstName.length > 2 && re.test(firstName)) && (lastName.length > 2 && re.test(lastName))) {
-        name = firstName+" "+lastName;
-        return true;
-    } else {
-        errorMessages.id[++idIndex] = "name";
-        errorMessages.msg[++msgIndex] = "Invalid firstname or lastname entered !";
-        return false;
+    if (!((firstName.length > 2 && re.test(firstName)) && (lastName.length > 2 && re.test(lastName)))) {
+        errorMessages.id[++index] = "name";
+        errorMessages.msg[index] = "Invalid firstname or lastname entered !";
     }
 }
 
 function validateEmail() {
     var re = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     var email = document.getElementById("email").value;
-    if (re.test(email)) {
-        email1 = email;
-        return true;
-    } else {
-        errorMessages.id[++idIndex] = "Email";
-        errorMessages.msg[++msgIndex] = "Invalid email entered !";
-        return false;
+    if (!(re.test(email))) {
+        errorMessages.id[++index] = "Email";
+        errorMessages.msg[index] = "Invalid email entered !";
     }
 }
 
 function validatePhone() {
     var contact = document.getElementById("phone").value;
-    if (contact.length > 8 && (!isNaN(contact))) {
-        phone = contact;
-        return true;
-    } else {
-        errorMessages.id[++idIndex] = "Phone";
-        errorMessages.msg[++msgIndex] = "Invalid contact entered !";
-        return false;
+    if (!(contact.length > 8 && (!isNaN(contact)))) {
+        errorMessages.id[++index] = "Phone";
+        errorMessages.msg[index] = "Invalid contact entered !";
     }
 }
 
 function validateCity() {
+    // debugger;
     var re = /^[A-Za-z]+$/;
     var city = document.getElementById("city").value;
-    if (city.length > 2 && re.test(city)) {
-        city1 = city;
-        return true;
-    } else {
-        errorMessages.id[++idIndex] = "City";
-        errorMessages.msg[++msgIndex] = "Invalid city entered !";
-        return false;
+    if (!(city.length > 2 && re.test(city))) {
+        errorMessages.id[++index] = "City";
+        errorMessages.msg[index] = "Invalid city entered !";
     }
 }
 
 function validateZipCode() {
     var zipcode = document.getElementById("zipcode").value;
-    if (contact.length == 6 && (!isNaN(zipcode))) {
-        return true;
-    } else {
-        errorMessages.id[++idIndex] = "zipcode";
-        errorMessages.msg[++msgIndex] = "Invalid zipcode entered !";
-        return false;
+    if (!(zipcode.length == 6 && (!isNaN(zipcode)))) {
+        errorMessages.id[++index] = "zipcode";
+        errorMessages.msg[index] = "Invalid zipcode entered !";
+    }
+}
+
+function validateState() {
+    var state = document.getElementById("state").value;
+    if (state == "") {
+        errorMessages.id[++index] = "state";
+        errorMessages.msg[index] = "Selection of a state is mandatory !";
     }
 }
 
 function getProfileData() {
-    document.getElementById("name").innerHTML = name;
-    document.getElementById("email").innerHTML = email1;
-    document.getElementById("city").innerHTML = city1;
-    // document.getElementById("name").innerHTML = name;
-    // document.getElementById("name").innerHTML = name;
+    var urlString = window.location;
+    var url = new URL(urlString);
+    var state = url.searchParams.get("state");
+    document.getElementById("name").innerHTML = url.searchParams.get("first-name") + " " + url.searchParams.get("last-name");
+    document.getElementById("email").innerHTML = url.searchParams.get("email");
+    document.getElementById("city").innerHTML = url.searchParams.get("city");
+    document.getElementById("phone").innerHTML = url.searchParams.get("phone");
+    document.getElementById("address").innerHTML = url.searchParams.get("address");
+    document.getElementById("state").innerHTML = state;
+    if (state == "Haryana") {
+        document.getElementById("label-1").innerHTML = "Zipcode:";
+        document.getElementById("label-1-content").innerHTML = url.searchParams.get("zipcode");
+        document.getElementById("label-2").innerHTML = "Have Hosting:";
+        document.getElementById("label-2-content").innerHTML = url.searchParams.get("hosting");
+    }
+    if (state == "Rajasthan") {
+        document.getElementById("label-1").innerHTML = "Website:";
+        document.getElementById("label-1-content").innerHTML = url.searchParams.get("website");
+        document.getElementById("label-2").innerHTML = "Project Description:";
+        document.getElementById("label-2-content").innerHTML = url.searchParams.get("project-description");
+    }
+    if (state == "Maharashtra") {
+        document.getElementById("label-1").innerHTML = "Zipcode:";
+        document.getElementById("label-1-content").innerHTML = url.searchParams.get("zipcode");
+        document.getElementById("label-2").innerHTML = "Project Description:";
+        document.getElementById("label-2-content").innerHTML = url.searchParams.get("project-description");
+    }
 }
+
+

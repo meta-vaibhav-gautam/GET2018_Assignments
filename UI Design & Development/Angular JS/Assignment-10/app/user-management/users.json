@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "Id": 1,
+      "Name": "Vaibhav",
+      "Phone": "9876543210",
+      "city": "jaipur"
+    },
+    {
+      "id": 2,
+      "Name": "Jitendra",
+      "Phone": "976543210",
+      "city": "Pune"
+    },
+    {
+      "id": 3,
+      "Name": "Ram",
+      "Phone": "9876543210",
+      "city": "Mumbai"
+    },
+    {
+      "Name": "Shubham",
+      "Phone": "9876543210",
+      "city": "Bangalore",
+      "id": 4
+    }
+  ]
+}

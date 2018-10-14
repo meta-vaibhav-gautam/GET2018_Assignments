@@ -1,28 +1,34 @@
 {
   "user": [
     {
-      "Id": 1,
-      "Name": "Vaibhav",
-      "Phone": "9876543210",
+      "id": 1,
+      "name": "Vaibhav",
+      "phone": "9876543210",
       "city": "jaipur"
     },
     {
       "id": 2,
-      "Name": "Jitendra",
-      "Phone": "976543210",
+      "name": "Jitendra",
+      "phone": "976543210",
       "city": "Pune"
     },
     {
       "id": 3,
-      "Name": "Ram",
-      "Phone": "9876543210",
+      "name": "Ram Ji",
+      "phone": "9876543210",
       "city": "Mumbai"
     },
     {
-      "Name": "Shubham",
-      "Phone": "9876543210",
+      "name": "Shubh",
+      "phone": "9876543210",
       "city": "Bangalore",
       "id": 4
+    },
+    {
+      "name": "Komal",
+      "phone": "9876543210",
+      "city": "Hyderabad",
+      "id": 5
     }
   ]
 }

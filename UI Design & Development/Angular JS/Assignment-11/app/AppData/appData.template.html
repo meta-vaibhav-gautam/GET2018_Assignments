@@ -1,0 +1,32 @@
+<header>
+    <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
+    <span><i class="fas fa-shopping-cart fa-2x"></i></span>
+    <span class="badge bg-warning">{{$ctrl.cartItemCount}}</span>
+</header>
+<hr />
+<div class="row">
+    <div class="col-md-3 mt-4">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="" ng-click="SearchList=all">All Categories</a></li>
+            <li class="list-group-item"><a href="" ng-click="SearchList={category:'bread'}">Bread</a></li>
+            <li class="list-group-item"><a href="" ng-click="SearchList={category:'dairy'}">Dairy</a></li>
+            <li class="list-group-item"><a href="" ng-click="SearchList={category:'fruits'}">Fruits</a></li>
+            <li class="list-group-item"><a href="" ng-click="SearchList={category:'spices'}">Seasonings and Spices</a></li>
+            <li class="list-group-item"><a href="" ng-click="SearchList={category:'vegetables'}">Vegetables</a></li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="d-flex flex-row flex-wrap">
+            <div class="card m-4" style="width: 18rem;" ng-repeat="item in $ctrl.items | filter:SearchList">
+                <img class="card-img-top" ng-src="{{item.imgUrl}}" alt="Image Unavailable !">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text text-muted">${{item.price}}</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-secondary btn-block" ng-click="addItemToCart(item)">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

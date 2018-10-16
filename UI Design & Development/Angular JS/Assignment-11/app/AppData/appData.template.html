@@ -1,7 +1,8 @@
 <header>
     <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
-    <span><i class="fas fa-shopping-cart fa-2x"></i></span>
-    <span class="badge bg-warning">{{$ctrl.cartItemCount}}</span>
+    <a class="col-1 py-0 my-2 btn btn-link" href="#!/cart">
+        <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
+    </a>
 </header>
 <hr />
 <div class="row">
@@ -23,8 +24,19 @@
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text text-muted">${{item.price}}</p>
                 </div>
-                <div>
-                    <a href="#" class="btn btn-secondary btn-block" ng-click="addItemToCart(item)">ADD TO CART</a>
+                <div id="add-to-cart-button" ng-if="$ctrl.isItemAdded[item.id]==false || $ctrl.isItemAdded[item.id]==undefined">
+                    <a href="#" class="btn btn-secondary btn-block" ng-click="addItemToCart(item,'increase')">ADD TO CART</a>
+                </div>
+                <div class="row container" ng-if="$ctrl.isItemAdded[item.id]">
+                    <div class="col-md-3">
+                        <a href="#" class="btn btn-secondary" ng-click="addItemToCart(item,'decrease')">-</a>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-muted">{{$ctrl.itemCounts[item.id]}} in cart</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" class="btn btn-secondary" ng-click="addItemToCart(item,'increase')">+</a>
+                    </div>
                 </div>
             </div>
         </div>

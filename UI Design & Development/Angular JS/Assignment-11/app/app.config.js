@@ -6,11 +6,11 @@ angular.
 
       $routeProvider.
         when('/', {
-          template: '<main-content></main-content>'
+          template: '<app-data></app-data>'
         }).
         when('/cart', {
           template: '<cart-detail></cart-detail>'
         }).
-        otherwise('/app');
+        otherwise('');
     }
   ]);

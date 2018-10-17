@@ -45,7 +45,7 @@ angular.
                             if (operation == "increase") {
                                 response.data.count += 1;
                                 self.itemCounts[item.id] += 1;
-                                response.data.price = response.data.count * response.data.price;
+                                response.data.price = response.data.count * item.price;
                                 $http({
                                     method: 'PUT',
                                     url: 'http://localhost:3000/cart/' + item.id,
@@ -67,7 +67,7 @@ angular.
                                     response.data.count -= 1;
                                 }
                                 self.itemCounts[item.id] -= 1;
-                                response.data.price = response.data.count * response.data.price;
+                                response.data.price = response.data.count * item.price;
                                 $http({
                                     method: 'PUT',
                                     url: 'http://localhost:3000/cart/' + item.id,
@@ -83,7 +83,7 @@ angular.
                                 "id": item.id,
                                 "title": item.name,
                                 "price": item.price,
-                                "imageUrl": item.imageUrl,
+                                "image": item.imgUrl,
                                 "count": 1
                             }
                             self.itemCounts[cartData.id] = 1;

@@ -5,15 +5,11 @@
 
 .list-group-item:hover {
     background-color: blue;
-}
-
-.list-group-item a:hover {
     color: white;
     font-weight: bold;
-    text-decoration: none;
+    box-shadow: 2px -2px 8px grey; 
 }
 
-.list-group-item a {
+.list-group-item {
     font-weight: bold;
-    text-decoration: none;
 }

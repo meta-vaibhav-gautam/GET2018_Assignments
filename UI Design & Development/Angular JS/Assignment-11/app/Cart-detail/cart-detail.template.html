@@ -1,1 +1,47 @@
-<h1>Hi {{title}}</h1>
+<header>
+    <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
+    <a class="col-1 py-0 my-2 btn btn-link" href="#!/cart">
+        <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
+    </a>
+</header>
+<hr />
+<div>
+    <h1>Shopping Cart</h1>
+    <div class="border p-3">
+        <p class="display-5 font-weight-bold d-inline">You have {{$ctrl.cartItemCount}} items in your shopping cart.</p>
+        <a href="" class="btn btn-light font-weight-bold float-right" ng-click="clearCart()">Clear Shopping Cart</a>
+    </div>
+    <div class="border">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='item in $ctrl.items'>
+                    <th scope="row">
+                        <img class="rounded-circle" ng-src='{{item.image}}' alt="image unavailable !" width="100px">
+                    </th>
+                    <td>{{item.title}}</td>
+                    <td class="row d-flex">
+                        <div>
+                            <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'decrease')">-</a>
+                        </div>
+                        <div>
+                            <p class="text-black p-2">{{$ctrl.itemCounts[item.id]}} in cart</p>
+                        </div>
+                        <div>
+                            <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'increase')">+</a>
+                        </div>
+                    </td>
+                    <!-- <td>{{item.count}}</td> -->
+                    <td>${{item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

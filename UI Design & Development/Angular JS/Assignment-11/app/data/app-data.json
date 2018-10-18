@@ -201,13 +201,5 @@
       "category": "spices"
     }
   ],
-  "cart": [
-    {
-      "id": 2,
-      "title": "Banana",
-      "price": 45,
-      "image": "../data/Image/Fruit/banana.jpeg",
-      "count": 1
-    }
-  ]
+  "cart": []
 }

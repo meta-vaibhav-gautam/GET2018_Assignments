@@ -2,10 +2,11 @@ angular.module('cartDetail').component('cartDetail', {
   templateUrl: "Cart-detail/cart-detail.template.html",
   controller: function cartController($scope, $http) {
     var self = this;
+    this.cartItems = [];
     this.cartItemCount = 0;
     this.isItemAdded = [false];
     this.itemCounts = [];
-    this.cartItems = [];
+    this.totalPrice = 0;
 
     $http.get('http://localhost:3000/cart').then(function (response) {
       self.items = response.data;
@@ -16,6 +17,7 @@ angular.module('cartDetail').component('cartDetail', {
       for (let i = 0; i < cartDataLength; i++) {
         self.isItemAdded[(response.data[i].id)] = true;
         self.itemCounts[(response.data[i]).id] = response.data[i].count;
+        self.totalPrice += response.data[i].price;
       }
     });
 
@@ -25,6 +27,7 @@ angular.module('cartDetail').component('cartDetail', {
         item.count += 1;
         self.itemCounts[item.id] += 1;
         item.price = item.count * itemUnitPrice;
+        self.totalPrice += itemUnitPrice;
         $http({
           method: 'PUT',
           url: 'http://localhost:3000/cart/' + item.id,
@@ -48,6 +51,7 @@ angular.module('cartDetail').component('cartDetail', {
         }
         self.itemCounts[item.id] -= 1;
         item.price = item.count * itemUnitPrice;
+        self.totalPrice -= itemUnitPrice;
         $http({
           method: 'PUT',
           url: 'http://localhost:3000/cart/' + item.id,
@@ -58,7 +62,8 @@ angular.module('cartDetail').component('cartDetail', {
     }
 
     $scope.clearCart = function () {
-      for (let i = 0; i < self.cartItems.length; i++) {
+      debugger;
+      for (let i = 0; i < cartItems.length; i++) {
         $http({
           method: 'DELETE',
           url: 'http://localhost:3000/cart/' + cartItems[i].id,

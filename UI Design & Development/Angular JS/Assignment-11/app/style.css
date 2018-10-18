@@ -1,0 +1,15 @@
+.card-img-top {
+    width:100%;
+    height: 12rem;
+}
+
+.list-group-item:hover {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px -2px 8px grey; 
+}
+
+.list-group-item {
+    font-weight: bold;
+}

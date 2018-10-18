@@ -1,0 +1,61 @@
+<header>
+    <a class="col-1 py-0 my-2 btn btn-link text-dark" href="#!/">
+        <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
+    </a>
+    <a class="col-1 py-0 my-2 btn btn-link text-muted" href="#!/cart">
+        <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
+    </a>
+</header>
+<hr />
+<div>
+    <h1>Shopping Cart</h1>
+    <div ng-if='!(($ctrl.items).length)'>
+        <h2>Your cart is empty !</h2>
+    </div>
+    <div class="border" ng-if='($ctrl.items).length'>
+        <p class="display-5 font-weight-bold d-inline p-3">You have {{$ctrl.cartItemCount}} items in your shopping cart.</p>
+        <a href="" class="btn btn-light font-weight-bold float-right" ng-click="clearCart()">Clear Shopping Cart</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='item in $ctrl.items'>
+                    <th scope="row">
+                        <img class="rounded-circle" ng-src='{{item.image}}' alt="image unavailable !" width="100px">
+                    </th>
+                    <td>{{item.title}}</td>
+                    <td class="row d-flex">
+                        <div>
+                            <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'decrease')">-</a>
+                        </div>
+                        <div>
+                            <p class="text-black p-2">{{$ctrl.itemCounts[item.id]}} in cart</p>
+                        </div>
+                        <div>
+                            <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'increase')">+</a>
+                        </div>
+                    </td>
+                    <td>${{item.price}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>${{$ctrl.totalPrice}}</th>
+                </tr>
+                <tr>
+                    <td><span class="btn btn-primary text-white">Check Out</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<header>
+    <a class="col-1 py-0 my-2 btn btn-link text-dark" href="#!/">
+        <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
+    </a>
+    <a class="col-1 py-0 my-2 btn btn-link text-muted" href="#!/cart">
+        <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
+    </a>
+</header>
+<hr />
+<!-- 
+<div>
+    <h1>Shopping Cart</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div> -->
+
+<div class="row">
+    <div class="col-md-3 mt-4">
+        <ul class="list-group">
+            <a href="" ng-click="SearchList=all">
+                <li class="list-group-item">All Categories</li>
+            </a>
+            <a href="" ng-click="SearchList={category:'bread'}">
+                <li class="list-group-item">Bread</li>
+            </a>
+            <a href="" ng-click="SearchList={category:'dairy'}">
+                <li class="list-group-item">Dairy</li>
+            </a>
+            <a href="" ng-click="SearchList={category:'fruits'}">
+                <li class="list-group-item">Fruits</li>
+            </a>
+            <a href="" ng-click="SearchList={category:'spices'}">
+                <li class="list-group-item">Seasonings and Spices</li>
+            </a>
+            <a href="" ng-click="SearchList={category:'vegetables'}">
+                <li class="list-group-item">Vegetables</li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="col-md-9">
+        <div class="d-flex flex-row flex-wrap">
+            <div class="card m-4" style="width: 18rem;" ng-repeat="item in $ctrl.items | filter:SearchList">
+                <img class="card-img-top" ng-src="{{item.imgUrl}}" alt="Image Unavailable !">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text text-muted">${{item.price}}</p>
+                </div>
+                <div id="add-to-cart-button" ng-if="$ctrl.isItemAdded[item.id]==false || $ctrl.isItemAdded[item.id]==undefined">
+                    <a href="" class="btn btn-secondary btn-block" ng-click="addItemToCart(item,'increase')">ADD TO
+                        CART</a>
+                </div>
+                <div class="row container" ng-if="$ctrl.isItemAdded[item.id]">
+                    <div class="col-md-3">
+                        <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'decrease')">-</a>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-muted">{{$ctrl.itemCounts[item.id]}} in cart</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="" class="btn btn-secondary" ng-click="addItemToCart(item,'increase')">+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

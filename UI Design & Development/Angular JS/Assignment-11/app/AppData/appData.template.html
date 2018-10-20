@@ -1,56 +1,46 @@
-<header>
-    <a class="col-1 py-0 my-2 btn btn-link text-dark" href="#!/">
-        <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
-    </a>
-    <a class="col-1 py-0 my-2 btn btn-link text-muted" href="#!/cart">
-        <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
-    </a>
+<header class="blog-header py-3 border-bottom">
+    <div class="row flex-nowrap mx-4">
+        <a class="col-1 py-0 my-2 btn btn-link text-dark" href="#!/">
+            <span class="p-3"><i class="fas fa-leaf fa-2x"></i></span>
+        </a>
+        <a class="col-1 py-0 my-2 btn btn-link text-muted" href="#!/shopping-cart">
+            <i class="fas fa-shopping-cart fa-md fa-2x"></i><span class="badge badge-warning">{{$ctrl.cartItemCount}}</span>
+         </a>
+        <div class="col-2 ml-auto">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle btn-sm bg-transparent" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    John Doe
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#!/products/orders/">My Orders</a>
+                    <a class="dropdown-item" href="">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
-<hr />
-<!-- 
-<div>
-    <h1>Shopping Cart</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-
-        </tbody>
-    </table>
-</div> -->
 
 <div class="row">
     <div class="col-md-3 mt-4">
-        <ul class="list-group">
+        <ul class="list-group" ng-init="selectedCategory = 'all'">
             <a href="" ng-click="SearchList=all">
-                <li class="list-group-item">All Categories</li>
+                <li class="list-group-item" ng-class="{'active':selectedCategory === 'all'}" ng-click="selectedCategory = 'all'">All Categories</li>
             </a>
             <a href="" ng-click="SearchList={category:'bread'}">
-                <li class="list-group-item">Bread</li>
+                <li class="list-group-item"  ng-class="{'active':selectedCategory === 'bread'}" ng-click="selectedCategory = 'bread'">Bread</li>
             </a>
             <a href="" ng-click="SearchList={category:'dairy'}">
-                <li class="list-group-item">Dairy</li>
+                <li class="list-group-item" ng-class="{'active':selectedCategory === 'dairy'}" ng-click="selectedCategory = 'dairy'">Dairy</li>
             </a>
             <a href="" ng-click="SearchList={category:'fruits'}">
-                <li class="list-group-item">Fruits</li>
+                <li class="list-group-item" ng-class="{'active':selectedCategory === 'fruits'}" ng-click="selectedCategory = 'fruits'">Fruits</li>
             </a>
             <a href="" ng-click="SearchList={category:'spices'}">
-                <li class="list-group-item">Seasonings and Spices</li>
+                <li class="list-group-item" ng-class="{'active':selectedCategory === 'spices'}" ng-click="selectedCategory = 'spices'">Seasonings and Spices</li>
             </a>
             <a href="" ng-click="SearchList={category:'vegetables'}">
-                <li class="list-group-item">Vegetables</li>
+                <li class="list-group-item" ng-class="{'active':selectedCategory === 'vegetables'}" ng-click="selectedCategory = 'vegetables'">Vegetables</li>
             </a>
         </ul>
     </div>

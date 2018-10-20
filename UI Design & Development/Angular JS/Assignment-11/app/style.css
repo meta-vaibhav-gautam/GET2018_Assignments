@@ -13,3 +13,10 @@
 .list-group-item {
     font-weight: bold;
 }
+
+.active {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px -2px 8px grey; 
+}

@@ -1,0 +1,48 @@
+{
+  "orders": [
+    {
+      "customerName": "vaibhav",
+      "customerAddress": "4 D 29, Mahaveer Nagar",
+      "customerCity": "Kota",
+      "items": [
+        {
+          "id": 1,
+          "title": "Apple",
+          "price": 45,
+          "image": "../data/Image/Fruit/apple.jpeg",
+          "count": 1
+        },
+        {
+          "id": 4,
+          "title": "Strawberry",
+          "price": 45,
+          "image": "../data/Image/Fruit/strawberry.jpeg",
+          "count": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "customerName": "harshit",
+      "customerAddress": "Pratap Nagar, hhjnmkl,.;",
+      "customerCity": "dfghjkl",
+      "items": [
+        {
+          "id": 1,
+          "title": "Apple",
+          "price": 45,
+          "image": "../data/Image/Fruit/apple.jpeg",
+          "count": 1
+        },
+        {
+          "id": 4,
+          "title": "Strawberry",
+          "price": 45,
+          "image": "../data/Image/Fruit/strawberry.jpeg",
+          "count": 1
+        }
+      ],
+      "id": 2
+    }
+  ]
+}

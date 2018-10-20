@@ -1,9 +1,10 @@
 {
   "orders": [
     {
-      "customerName": "vaibhav",
-      "customerAddress": "4 D 29, Mahaveer Nagar",
+      "customerName": "Vaibhav",
+      "customerAddress": "4 D 29, Mahaveer nagar",
       "customerCity": "Kota",
+      "orderDate": "20/10/2018",
       "items": [
         {
           "id": 1,
@@ -13,36 +14,14 @@
           "count": 1
         },
         {
-          "id": 4,
-          "title": "Strawberry",
+          "id": 20,
+          "title": "Milk",
           "price": 45,
-          "image": "../data/Image/Fruit/strawberry.jpeg",
+          "image": "../data/Image/Dairy/Milk.jpeg",
           "count": 1
         }
       ],
       "id": 1
-    },
-    {
-      "customerName": "harshit",
-      "customerAddress": "Pratap Nagar, hhjnmkl,.;",
-      "customerCity": "dfghjkl",
-      "items": [
-        {
-          "id": 1,
-          "title": "Apple",
-          "price": 45,
-          "image": "../data/Image/Fruit/apple.jpeg",
-          "count": 1
-        },
-        {
-          "id": 4,
-          "title": "Strawberry",
-          "price": 45,
-          "image": "../data/Image/Fruit/strawberry.jpeg",
-          "count": 1
-        }
-      ],
-      "id": 2
     }
   ]
 }

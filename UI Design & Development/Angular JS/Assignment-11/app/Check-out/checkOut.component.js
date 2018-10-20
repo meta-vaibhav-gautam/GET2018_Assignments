@@ -21,6 +21,7 @@ angular.module('checkOut').component('checkOut', {
         "customerName": $scope.customer.name,
         "customerAddress" : $scope.customer.addressLine1+", "+$scope.customer.addressLine2,
         "customerCity" : $scope.customer.city,
+        "orderDate" : new Date().getDate()+'/'+(new Date().getMonth()+1)+'/'+new Date().getFullYear(),
         "items" : self.items
       }
       $http({

@@ -3,5 +3,6 @@ angular.module('app',[
     'cartDetail',
     'checkOut',
     'orderSuccess',
+    'orders',
     'ngRoute'
 ]);

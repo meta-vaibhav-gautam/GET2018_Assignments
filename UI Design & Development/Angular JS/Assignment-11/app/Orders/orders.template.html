@@ -1,0 +1,19 @@
+<div>
+    <h2>Orders</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='order in $ctrl.orders'>
+                <td class="text-muted">{{order.customerName}}</td>
+                <td class="text-muted">{{order.orderDate}}</td>
+                <td class="text-muted"><a href="" class="text-primary font-weight-bold" ng-model="order">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

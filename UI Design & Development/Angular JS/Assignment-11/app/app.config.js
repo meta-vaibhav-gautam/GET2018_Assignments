@@ -17,6 +17,9 @@ angular.
         when('/order-success', {
           template: '<header-content></header-content> <order-success></order-success>'
         }).
+        when('/admin/orders', {
+          template: '<header-content></header-content> <orders></orders>'
+        }).
         otherwise('');
     }
   ]);

@@ -1,0 +1,39 @@
+/* div {
+    border: 1px solid;
+} */
+
+.div-shadow {
+    box-shadow: 0px -2px 10px grey;
+}
+
+.side-nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+.side-nav-link:hover {
+    color: #40A4F1;
+    text-decoration: none;
+}
+
+#header-search {
+    border-radius: 30px 0px 0px 30px;
+    padding: 5px 15px;
+    border-right: 0px;
+    background-color: #6D7BEB;
+    color: white;
+}
+
+#search-icon {
+    border: 3px solid grey;
+    padding: 5px;
+    border-radius: 0px 30px 30px 0px;
+    border-left: 0px;
+    background-color: #6D7BEB;
+    margin-left: -5px; 
+}
+
+header {
+    background-color: #5B6BE8;
+    margin: 0px -15px;
+}

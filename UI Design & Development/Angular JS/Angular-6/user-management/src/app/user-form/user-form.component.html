@@ -1,0 +1,22 @@
+<div class="modal-dialog form-shadow" role="document">
+  <div class="modal-content">
+    <div class="modal-body mx-3">
+      <div class="md-form mb-4">
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="user.name" placeholder="name" />
+      </div>
+      <div class="md-form mb-4">
+        <label>Contact No</label>
+        <input class="form-control" [(ngModel)]="user.phone" placeholder="Contact Info" />
+      </div>
+      <div class="md-form mb-4">
+        <label>Address</label>
+        <input class="form-control" [(ngModel)]="user.city" placeholder="Address" />
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end">
+      <a routerLink="/dashboard" class="btn btn-default">Cancel</a>
+      <input type="submit" value="Save" class="btn btn-primary" (click)="chooseOperation(user)" />
+    </div>
+  </div>
+</div>

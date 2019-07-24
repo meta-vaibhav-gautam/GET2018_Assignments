@@ -62,7 +62,6 @@ angular.module('cartDetail').component('cartDetail', {
     }
 
     $scope.clearCart = function () {
-      debugger;
       for (let i = 0; i < cartItems.length; i++) {
         $http({
           method: 'DELETE',

@@ -15,7 +15,7 @@ angular.
                 let cartDataLength = response.data.length;
                 self.cartItemCount = cartDataLength;
 
-                for(let i=0;i<cartDataLength;i++) {
+                for (let i = 0; i < cartDataLength; i++) {
                     self.isItemAdded[(response.data[i].id)] = true;
                     self.itemCounts[(response.data[i]).id] = response.data[i].count;
                 }
@@ -40,61 +40,63 @@ angular.
 
                 $http.get('http://localhost:3000/cart/' + item.id)
                     .then(
-                        function successCallback(response) {
+                    function successCallback(response) {
 
-                            if (operation == "increase") {
-                                response.data.count += 1;
-                                self.itemCounts[item.id] += 1;
-                                response.data.price = response.data.count * item.price;
-                                $http({
-                                    method: 'PUT',
-                                    url: 'http://localhost:3000/cart/' + item.id,
-                                    data: response.data,
-                                    dataType: 'json'
-                                });
-                            }
-
-                            if (operation == "decrease") {
-
-                                if (response.data.count == 1) {
-                                    $http({
-                                        method: 'DELETE',
-                                        url: 'http://localhost:3000/cart/' + item.id,
-                                    });
-                                    self.cartItemCount = self.cartItemCount - 1; 
-                                    self.isItemAdded[item.id] = false;
-                                } else {
-                                    response.data.count -= 1;
-                                }
-                                self.itemCounts[item.id] -= 1;
-                                response.data.price = response.data.count * item.price;
-                                $http({
-                                    method: 'PUT',
-                                    url: 'http://localhost:3000/cart/' + item.id,
-                                    data: response.data,
-                                    dataType: 'json'
-                                });
-                            }
-                        },
-
-                        function errorCallback(response) {
+                        if (operation == "increase") {
+                            response.data.count += 1;
+                            self.itemCounts[item.id] += 1;
                             self.cartItemCount = self.cartItemCount + 1;
-                            var cartData = {
-                                "id": item.id,
-                                "title": item.name,
-                                "price": item.price,
-                                "image": item.imgUrl,
-                                "count": 1
-                            }
-                            self.itemCounts[cartData.id] = 1;
+                            response.data.price = response.data.count * item.price;
                             $http({
-                                method: 'POST',
-                                url: 'http://localhost:3000/cart/',
-                                data: cartData,
+                                method: 'PUT',
+                                url: 'http://localhost:3000/cart/' + item.id,
+                                data: response.data,
                                 dataType: 'json'
-                            })
-                            self.isItemAdded[item.id] = true;
+                            });
                         }
+
+                        if (operation == "decrease") {
+
+                            if (response.data.count == 1) {
+                                $http({
+                                    method: 'DELETE',
+                                    url: 'http://localhost:3000/cart/' + item.id,
+                                });
+                                self.cartItemCount = self.cartItemCount - 1;
+                                self.isItemAdded[item.id] = false;
+                            } else {
+                                response.data.count -= 1;
+                            }
+                            self.itemCounts[item.id] -= 1;
+                            self.cartItemCount = self.cartItemCount - 1;
+                            response.data.price = response.data.count * item.price;
+                            $http({
+                                method: 'PUT',
+                                url: 'http://localhost:3000/cart/' + item.id,
+                                data: response.data,
+                                dataType: 'json'
+                            });
+                        }
+                    },
+
+                    function errorCallback(response) {
+                        self.cartItemCount = self.cartItemCount + 1;
+                        var cartData = {
+                            "id": item.id,
+                            "title": item.name,
+                            "price": item.price,
+                            "image": item.imgUrl,
+                            "count": 1
+                        }
+                        self.itemCounts[cartData.id] = 1;
+                        $http({
+                            method: 'POST',
+                            url: 'http://localhost:3000/cart/',
+                            data: cartData,
+                            dataType: 'json'
+                        })
+                        self.isItemAdded[item.id] = true;
+                    }
                     );
             }
         }
